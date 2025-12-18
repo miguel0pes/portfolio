@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Foto</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="index.html" style="font-size:12px;">←</a>
+
+<img id="photo" style="width:100%; margin-top:40px;">
+
+<div style="margin-top:30px; font-size:12px; line-height:1.5;">
+  <p id="title"></p>
+  <p id="info"></p>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+document.getElementById("photo").src = params.get("img");
+document.getElementById("title").innerText = params.get("title") || "";
+document.getElementById("info").innerText = params.get("info") || "";
+</script>
+
+</body>
+</html>
