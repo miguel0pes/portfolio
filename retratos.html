@@ -5,13 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <base href="/portfolio/">
   <title>Retratos</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
   <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
-  
-  <h1>Retratos</h1>
-  <p>Em construção.</p>
-  <a href="index.html">← voltar</a>
+  <div class="menu-overlay"></div>
+
+  <nav class="side-menu">
+    <a href="index.html">Home</a>
+    <a href="retratos.html">Retratos</a>
+    <a href="paisagem.html">Paisagem</a>
+  </nav>
+
+  <header>
+    <h1>Retratos</h1>
+  </header>
+
+  <section class="gallery">
+    <!-- Troca/duplica estas linhas com as tuas fotos reais -->
+    <a href="photo.html?img=images/retratos/1.jpg&title=Retrato%201&info=">
+      <img src="images/retratos/1.jpg" class="fade" alt="Retrato 1">
+    </a>
+
+    <a href="photo.html?img=images/retratos/2.jpg&title=Retrato%202&info=">
+      <img src="images/retratos/2.jpg" class="fade" alt="Retrato 2">
+    </a>
+
+    <a href="photo.html?img=images/retratos/3.jpg&title=Retrato%203&info=">
+      <img src="images/retratos/3.jpg" class="fade" alt="Retrato 3">
+    </a>
+  </section>
+
+  <footer class="fade">
+    <p>miguelopes.pessoal@gmail.com</p>
+    <p>@_.miguelopes._</p>
+  </footer>
+
 </body>
 </html>
