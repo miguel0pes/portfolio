@@ -113,3 +113,69 @@ footer {
     padding: 50px 16px;
   }
 }
+
+/* Garantir que o menu fica acima das imagens */
+.side-menu {
+  z-index: 1500;
+}
+
+/* Botão hambúrguer (escondido no desktop) */
+.menu-btn {
+  display: none;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 2000;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #eee;
+  padding: 10px 12px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Overlay (só aparece quando o menu abre) */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1400;
+}
+
+/* Mobile: menu “off-canvas” */
+@media (max-width: 768px) {
+  .menu-btn { display: block; }
+
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+    height: 100vh;
+    width: 75vw;
+    max-width: 280px;
+    padding: 70px 20px 20px 20px;
+    background: rgba(255,255,255,0.98);
+
+    /* escondido por defeito */
+    translate: -110% 0;
+    transition: translate 0.25s ease;
+  }
+
+  .side-menu.open {
+    translate: 0 0;
+  }
+
+  .menu-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Ajuste de margens no mobile */
+  body {
+    padding: 50px 16px;
+  }
+}
