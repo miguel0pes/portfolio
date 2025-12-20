@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
-  <title>Retratos</title>
-</head>
-<body>
-  <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/portfolio/">
+  <title>Paisagem</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
-  
-  <h1>Paisagens</h1>
-  <p>Em construção.</p>
-  <a href="index.html">← voltar</a>
+</head>
+<body>
+
+  <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  <div class="menu-overlay"></div>
+
+  <nav class="side-menu">
+    <a href="index.html">Home</a>
+    <a href="retratos.html">Retratos</a>
+    <a href="paisagem.html">Paisagem</a>
+  </nav>
+
+  <header>
+    <h1>Paisagem</h1>
+  </header>
+
+  <section class="gallery">
+    <!-- Troca/duplica estas linhas com as tuas fotos reais -->
+    <a href="photo.html?img=images/paisagem/1.jpg&title=Paisagem%201&info=">
+      <img src="images/paisagem/1.jpg" class="fade" alt="Paisagem 1">
+    </a>
+
+    <a href="photo.html?img=images/paisagem/2.jpg&title=Paisagem%202&info=">
+      <img src="images/paisagem/2.jpg" class="fade" alt="Paisagem 2">
+    </a>
+
+    <a href="photo.html?img=images/paisagem/3.jpg&title=Paisagem%203&info=">
+      <img src="images/paisagem/3.jpg" class="fade" alt="Paisagem 3">
+    </a>
+  </section>
+
+  <footer class="fade">
+    <p>miguelopes.pessoal@gmail.com</p>
+    <p>@_.miguelopes._</p>
+  </footer>
+
 </body>
 </html>
