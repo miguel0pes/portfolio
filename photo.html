@@ -6,26 +6,39 @@
   <base href="/portfolio/">
   <title>Foto</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
+
 <body>
 
   <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  <div class="menu-overlay"></div>
 
-<a href="index.html" style="font-size:12px;">←</a>
+  <nav class="side-menu">
+    <a href="index.html">Home</a>
+    <a href="retratos.html">Retratos</a>
+    <a href="paisagem.html">Paisagem</a>
+  </nav>
 
-<img id="photo" style="width:100%; margin-top:40px;">
+  <a href="index.html" style="font-size:12px;">←</a>
 
-<div style="margin-top:30px; font-size:12px; line-height:1.5;">
-  <p id="title"></p>
-  <p id="info"></p>
-</div>
+  <img id="photo" style="width:100%; margin-top:40px;" alt="Foto">
 
-<script>
-const params = new URLSearchParams(window.location.search);
-document.getElementById("photo").src = params.get("img");
-document.getElementById("title").innerText = params.get("title") || "";
-document.getElementById("info").innerText = params.get("info") || "";
-</script>
+  <div style="margin-top:30px; font-size:12px; line-height:1.5;">
+    <p id="title"></p>
+    <p id="info"></p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const img = params.get("img");
+    const title = params.get("title") || "";
+    const info = params.get("info") || "";
+
+    if (img) document.getElementById("photo").src = img;
+    document.getElementById("title").innerText = title;
+    document.getElementById("info").innerText = info;
+  </script>
 
 </body>
 </html>
