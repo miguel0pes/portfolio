@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Sobre — Miguel Lopes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --text: #111;
+      --muted: #666;
+      --accent: #111;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      margin-left: 16px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    nav a.active {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    main {
+      margin-top: 16px;
+      max-width: 640px;
+    }
+
+    h1 {
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 24px;
+      color: var(--muted);
+    }
+
+    p + p {
+      margin-top: 12px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a href="index.html" class="brand">Miguel Lopes</a>
+
+      <nav>
+        <a href="index.html">Fotografia</a>
+        <a href="sobre.html" class="active">Sobre</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Sobre</h1>
+
+      <p>
+        [Escreve aqui uma apresentação curta sobre ti — quem és, de onde
+        fotografas, que tipo de trabalho te interessa.]
+      </p>
+
+      <p>
+        Podes mencionar, por exemplo, o interesse em protestos, paisagens,
+        vida universitária (WSL) e imagens do quotidiano, e como isso se liga
+        à tua prática de escrita e política.
+      </p>
+
+      <p>
+        No fim, podes deixar um contacto simples (email, Instagram, etc.)
+        se quiseres.
+      </p>
+    </main>
+  </div>
+</body>
+</html>
