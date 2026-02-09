@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>NÃO às Mega Centrais Solares — Miguel Lopes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --text: #111;
+      --muted: #666;
+      --accent: #111;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      margin-left: 16px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    nav a.active {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    main {
+      margin-top: 16px;
+      max-width: 720px;
+    }
+
+    h1 {
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .title {
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .text p + p {
+      margin-top: 10px;
+    }
+
+    .gallery {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a href="index.html" class="brand">Miguel Lopes</a>
+
+      <nav>
+        <a href="index.html" class="active">Fotografia</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Protestos</h1>
+
+      <div class="title">NÃO às Mega Centrais Solares</div>
+      <div class="meta">[localidade / região] · [data] · luta pelo território</div>
+
+      <div class="text">
+        <p>
+          [Escreve algumas frases sobre o contexto das mega centrais solares,
+          o impacto no território, quem convocou o protesto, etc.]
+        </p>
+      </div>
+
+      <div class="gallery">
+        <!-- Foto 1 -->
+        <figure>
+          <img src="images/protestos/nao-mega-centrais-solares/foto1.jpg" alt="">
+          <figcaption class="caption"></figcaption>
+        </figure>
+
+        <!-- Foto 2 -->
+        <figure>
+          <img src="images/protestos/nao-mega-centrais-solares/foto2.jpg" alt="">
+          <figcaption class="caption"></figcaption>
+        </figure>
+
+        <!-- Foto 3 -->
+        <figure>
+          <img src="images/protestos/nao-mega-centrais-solares/foto3.jpg" alt="">
+          <figcaption class="caption"></figcaption>
+        </figure>
+
+        <!-- Duplica mais <figure> conforme precisares -->
+      </div>
+    </main>
+  </div>
+</body>
+</html>
