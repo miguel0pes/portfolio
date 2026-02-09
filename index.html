@@ -2,42 +2,173 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="/portfolio/">
-  <title>Portfólio</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <title>Miguel Lopes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --text: #111;
+      --muted: #666;
+      --accent: #111;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      margin-left: 16px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    nav a.active {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    main {
+      margin-top: 16px;
+    }
+
+    h1 {
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 24px;
+      color: var(--muted);
+    }
+
+    .contexts {
+      list-style: none;
+    }
+
+    .contexts li + li {
+      margin-top: 12px;
+    }
+
+    .context-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .context-name {
+      font-size: 1.05rem;
+    }
+
+    .context-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 16px;
+      }
+
+      .context-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="page">
+    <header>
+      <a href="index.html" class="brand">Miguel Lopes</a>
 
-  <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
-  <div class="menu-overlay"></div>
+      <nav>
+        <a href="index.html" class="active">Fotografia</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+    </header>
 
-  <nav class="side-menu">
-    <a href="retratos.html">Retratos</a>
-    <a href="paisagem.html">Paisagem</a>
-  </nav>
+    <main>
+      <h1>Fotografia</h1>
 
-  <header>
-    <h1>Miguel Lopes</h1>
-  </header>
+      <ul class="contexts">
+        <li>
+          <a class="context-link" href="protestos.html">
+            <span class="context-name">Protestos</span>
+            <span class="context-meta">trabalho documental</span>
+          </a>
+        </li>
 
-  <section class="gallery">
-    <a href="photo.html?img=images/home/1.jpg&title=Foto%201&info=Descrição da foto 1">
-      <img src="images/home/1.jpg" class="fade">
-    </a>
-    <a href="photo.html?img=images/retratos/2.jpg&title=Foto%202&info=Descrição da foto 2">
-      <img src="images/retratos/2.jpg" class="fade">
-    </a>
-    <a href="photo.html?img=images/retratos/3.jpg&title=Foto%203&info=Descrição da foto 3">
-      <img src="images/retratos/3.jpg" class="fade">
-    </a>
-  </section>
+        <li>
+          <a class="context-link" href="paisagens.html">
+            <span class="context-name">Paisagens</span>
+            <span class="context-meta">lugares, distância, silêncio</span>
+          </a>
+        </li>
 
-  <footer class="fade">
-    <p>miguelopes.pessoal@gmail.com</p>
-    <p>@_.miguelopes._</p>
-  </footer>
+        <li>
+          <a class="context-link" href="wsl.html">
+            <span class="context-name">WSL</span>
+            <span class="context-meta">vida universitária, intervenções</span>
+          </a>
+        </li>
 
+        <li>
+          <a class="context-link" href="diversos.html">
+            <span class="context-name">Diversos</span>
+            <span class="context-meta">imagens soltas, exercícios, arquivo</span>
+          </a>
+        </li>
+      </ul>
+    </main>
+  </div>
 </body>
 </html>
