@@ -88,7 +88,7 @@
       transform: scale(1.02);
     }
 
-    /* MODAL - SOLUÇÃO DEFINITIVA */
+    /* MODAL CORRIGIDO - CENTRO PERFEITO + NAVEGAÇÃO */
     .modal {
       display: none;
       position: fixed;
@@ -101,18 +101,22 @@
       animation: fadeIn 0.3s;
     }
     .modal-content {
-      position: relative;
-      margin: auto;
-      width: 90vw;
-      height: 90vh;
+      position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 1200px;
+      height: 90vh;
+      max-height: 90vh;
       border: 1px solid #fff;
       border-radius: 4px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     .modal img {
+      flex: 1;
       width: 100%;
       height: 100%;
       object-fit: contain;
@@ -145,6 +149,36 @@
     .close:hover {
       color: #ccc;
     }
+    /* SETAS NAVEGAÇÃO */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s;
+      z-index: 1001;
+    }
+    .nav-arrow:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .prev {
+      left: 20px;
+    }
+    .next {
+      right: 20px;
+    }
     @keyframes fadeIn {
       from {opacity: 0;}
       to {opacity: 1;}
@@ -170,6 +204,11 @@
         width: 95vw;
         height: 85vh;
       }
+      .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -183,7 +222,7 @@
     </header>
 
     <!-- GREVE GERAL -->
-    <div class="series-row">
+    <div class="series-row" data-series="greve">
       <div class="series-title">Greve Geral</div>
       <div class="thumbs-container">
         <img class="thumb" src="images/greve-geral/GG1.jpg" alt="Greve Geral 1" data-caption="Greve Geral, 2025">
@@ -222,6 +261,8 @@
   <!-- MODAL -->
   <div id="modal" class="modal">
     <span class="close">&times;</span>
+    <button class="nav-arrow prev" id="prev">‹</button>
+    <button class="nav-arrow next" id="next">›</button>
     <div class="modal-content">
       <img id="modal-img">
       <div id="caption" class="caption"></div>
@@ -229,38 +270,76 @@
   </div>
 
   <script>
+    let currentThumbs = [];
+    let currentIndex = 0;
+
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modal-img');
     const captionText = document.getElementById('caption');
     const closeBtn = document.querySelector('.close');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
 
-    document.querySelectorAll('.thumb').forEach(thumb => {
+    // Abrir modal com thumbs da mesma série
+    document.querySelectorAll('.thumb').forEach((thumb, index) => {
       thumb.addEventListener('click', () => {
+        currentThumbs = Array.from(thumb.closest('.series-row').querySelectorAll('.thumb'));
+        currentIndex = currentThumbs.indexOf(thumb);
+        showImage(currentIndex);
         modal.style.display = 'block';
         document.body.classList.add('modal-open');
-        modalImg.src = thumb.src; // Usa a MESMA imagem da thumb
-        captionText.textContent = thumb.dataset.caption;
       });
     });
 
-    closeBtn.addEventListener('click', () => {
+    function showImage(index) {
+      const thumb = currentThumbs[index];
+      if (thumb) {
+        modalImg.src = thumb.src;
+        captionText.textContent = thumb.dataset.caption;
+        prevBtn.style.display = index > 0 ? 'flex' : 'none';
+        nextBtn.style.display = index < currentThumbs.length - 1 ? 'flex' : 'none';
+      }
+    }
+
+    // Navegação
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showImage(currentIndex);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < currentThumbs.length - 1) {
+        currentIndex++;
+        showImage(currentIndex);
+      }
+    });
+
+    // Teclas
+    document.addEventListener('keydown', (e) => {
+      if (modal.style.display === 'block') {
+        if (e.key === 'Escape') {
+          closeModal();
+        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+          currentIndex--;
+          showImage(currentIndex);
+        } else if (e.key === 'ArrowRight' && currentIndex < currentThumbs.length - 1) {
+          currentIndex++;
+          showImage(currentIndex);
+        }
+      }
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    function closeModal() {
       modal.style.display = 'none';
       document.body.classList.remove('modal-open');
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.style.display === 'block') {
-        modal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-      }
-    });
+    }
   </script>
 </body>
 </html>
