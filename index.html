@@ -1,104 +1,25 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Miguel Lopes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    :root {
-      --bg: #f7f7f7;
-      --text: #111;
-      --muted: #666;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-    .page {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 24px;
-    }
-    .brand {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 60px;
-    }
-    .series-row {
-      margin-bottom: 80px;
-    }
-    .series-title {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 24px;
-      color: var(--muted);
-    }
-    .thumbs-container {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      scrollbar-width: none;
-    }
-    .thumbs-container::-webkit-scrollbar {
-      display: none;
-    }
-    .thumb {
-      width: 180px;
-      height: 140px;
-      background: #ddd;
-      border: 2px solid #ff4444;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      font-weight: bold;
-      font-size: 12px;
-      border-radius: 4px;
-    }
-    @media (max-width: 768px) {
-      .thumb {
-        width: 140px;
-        height: 110px;
-        font-size: 10px;
-      }
-    }
-  </style>
+<title>Miguel Lopes</title>
 </head>
-<body>
-  <div class="page">
-    <div class="brand">Miguel Lopes</div>
+<body style="background:#f7f7f7; padding:50px; font-family:Arial; max-width:1200px; margin:auto;">
+<h1 style="font-size:24px; letter-spacing:2px; text-transform:uppercase; color:#666; margin-bottom:50px;">Miguel Lopes</h1>
 
-    <div class="series-row">
-      <div class="series-title">Greve Geral</div>
-      <div class="thumbs-container">
-        <div class="thumb">GG1</div>
-        <div class="thumb">GG2</div>
-        <div class="thumb">GG3</div>
-        <div class="thumb">GG4</div>
-        <div class="thumb">GG5</div>
-        <div class="thumb">GG6</div>
-        <div class="thumb">GG7</div>
-        <div class="thumb">GG8</div>
-        <div class="thumb">GG9</div>
-        <div class="thumb">GG10</div>
-        <div class="thumb">GG11</div>
-        <div class="thumb">GG12</div>
-        <div class="thumb">GG13</div>
-        <div class="thumb">GG14</div>
-        <div class="thumb">GG15</div>
-      </div>
-    </div>
-  </div>
+<h2 style="font-size:14px; letter-spacing:1px; text-transform:uppercase; color:#666; margin-bottom:30px;">GREVE GERAL</h2>
+<div style="display:flex; overflow-x:scroll; gap:15px; padding:20px 0;">
+  <div style="width:180px; height:140px; background:red; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; flex-shrink:0; border-radius:5px;">1</div>
+  <div style="width:180px; height:140px; background:red; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; flex-shrink:0; border-radius:5px;">2</div>
+  <div style="width:180px; height:140px; background:red; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; flex-shrink:0; border-radius:5px;">3</div>
+  <div style="width:180px; height:140px; background:red; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; flex-shrink:0; border-radius:5px;">4</div>
+  <div style="width:180px; height:140px; background:red; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; flex-shrink:0; border-radius:5px;">5</div>
+  <div style="width:180px; height:140px; background:red; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; flex-shrink:0; border-radius:5px;">6</div>
+</div>
+
+<h2 style="font-size:14px; letter-spacing:1px; text-transform:uppercase; color:#666; margin:50px 0 30px 0;">PAISAGENS</h2>
+<div style="display:flex; overflow-x:scroll; gap:15px; padding:20px 0;">
+  <div style="width:180px; height:140px; background:blue; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; flex-shrink:0; border-radius:5px;">A</div>
+  <div style="width:180px; height:140px; background:blue; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; flex-shrink:0; border-radius:5px;">B</div>
+</div>
 </body>
 </html>
