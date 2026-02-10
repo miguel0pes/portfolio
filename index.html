@@ -77,6 +77,7 @@
       width: 180px;
       height: 220px;
       object-fit: cover;
+      object-position: center;
       flex-shrink: 0;
       border-radius: 4px;
       cursor: pointer;
@@ -87,7 +88,7 @@
       transform: scale(1.02);
     }
 
-    /* MODAL CORRIGIDO */
+    /* MODAL - SOLUÇÃO DEFINITIVA */
     .modal {
       display: none;
       position: fixed;
@@ -102,47 +103,44 @@
     .modal-content {
       position: relative;
       margin: auto;
-      max-width: 90vw;
-      max-height: 90vh;
+      width: 90vw;
+      height: 90vh;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       border: 1px solid #fff;
       border-radius: 4px;
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
-      background: #000;
-      padding: 20px;
-      box-sizing: border-box;
+      overflow: hidden;
     }
     .modal img {
-      max-width: 100%;
-      max-height: 70vh;
-      width: auto;
-      height: auto;
-      object-fit: contain; /* MUDANÇA CHAVE: contain em vez de cover */
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
       display: block;
-      border-radius: 4px;
     }
     .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       color: white;
-      padding: 12px 20px 8px;
+      padding: 16px 24px;
       font-size: 0.9rem;
-      background: rgba(0,0,0,0.7);
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
       text-align: center;
-      border-radius: 0 0 4px 4px;
-      margin-top: 8px;
     }
     .close {
       position: absolute;
-      top: 15px;
-      right: 25px;
+      top: 20px;
+      right: 30px;
       color: white;
-      font-size: 35px;
+      font-size: 32px;
       font-weight: bold;
       cursor: pointer;
       z-index: 1001;
       line-height: 1;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
     .close:hover {
       color: #ccc;
@@ -168,12 +166,9 @@
         width: 140px;
         height: 170px;
       }
-      .modal img {
-        max-height: 60vh;
-      }
       .modal-content {
-        max-width: 95vw;
-        padding: 15px;
+        width: 95vw;
+        height: 85vh;
       }
     }
   </style>
@@ -191,21 +186,21 @@
     <div class="series-row">
       <div class="series-title">Greve Geral</div>
       <div class="thumbs-container">
-        <img class="thumb" src="images/greve-geral/GG1.jpg" alt="Greve Geral 1" data-full="images/greve-geral/GG1.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG2.jpg" alt="Greve Geral 2" data-full="images/greve-geral/GG2.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG3.jpg" alt="Greve Geral 3" data-full="images/greve-geral/GG3.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG4.jpg" alt="Greve Geral 4" data-full="images/greve-geral/GG4.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG5.jpg" alt="Greve Geral 5" data-full="images/greve-geral/GG5.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG6.jpg" alt="Greve Geral 6" data-full="images/greve-geral/GG6.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG7.jpg" alt="Greve Geral 7" data-full="images/greve-geral/GG7.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG8.jpg" alt="Greve Geral 8" data-full="images/greve-geral/GG8.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG9.jpg" alt="Greve Geral 9" data-full="images/greve-geral/GG9.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG10.jpg" alt="Greve Geral 10" data-full="images/greve-geral/GG10.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG11.jpg" alt="Greve Geral 11" data-full="images/greve-geral/GG11.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG12.jpg" alt="Greve Geral 12" data-full="images/greve-geral/GG12.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG13.jpg" alt="Greve Geral 13" data-full="images/greve-geral/GG13.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG14.jpg" alt="Greve Geral 14" data-full="images/greve-geral/GG14.jpg" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG15.jpg" alt="Greve Geral 15" data-full="images/greve-geral/GG15.jpg" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG1.jpg" alt="Greve Geral 1" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG2.jpg" alt="Greve Geral 2" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG3.jpg" alt="Greve Geral 3" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG4.jpg" alt="Greve Geral 4" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG5.jpg" alt="Greve Geral 5" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG6.jpg" alt="Greve Geral 6" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG7.jpg" alt="Greve Geral 7" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG8.jpg" alt="Greve Geral 8" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG9.jpg" alt="Greve Geral 9" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG10.jpg" alt="Greve Geral 10" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG11.jpg" alt="Greve Geral 11" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG12.jpg" alt="Greve Geral 12" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG13.jpg" alt="Greve Geral 13" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG14.jpg" alt="Greve Geral 14" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG15.jpg" alt="Greve Geral 15" data-caption="Greve Geral, 2025">
       </div>
     </div>
 
@@ -243,7 +238,7 @@
       thumb.addEventListener('click', () => {
         modal.style.display = 'block';
         document.body.classList.add('modal-open');
-        modalImg.src = thumb.dataset.full;
+        modalImg.src = thumb.src; // Usa a MESMA imagem da thumb
         captionText.textContent = thumb.dataset.caption;
       });
     });
