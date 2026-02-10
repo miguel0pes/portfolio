@@ -10,7 +10,6 @@
       --bg: #f7f7f7;
       --text: #111;
       --muted: #666;
-      --accent: #111;
     }
 
     * {
@@ -27,26 +26,10 @@
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
     .page {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 16px 48px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 32px;
+      padding: 40px 24px;
     }
 
     .brand {
@@ -54,44 +37,30 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-    }
-
-    nav a {
-      margin-left: 16px;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    nav a.active {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    main {
-      margin-top: 16px;
+      margin-bottom: 60px;
     }
 
     .series-row {
-      margin: 48px 0;
+      margin-bottom: 80px;
     }
 
     .series-title {
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       color: var(--muted);
     }
 
     .thumbs-container {
       display: flex;
-      gap: 8px;
+      gap: 12px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
       -ms-overflow-style: none;
       scroll-behavior: smooth;
-      padding-bottom: 8px;
+      padding-bottom: 12px;
     }
 
     .thumbs-container::-webkit-scrollbar {
@@ -99,54 +68,76 @@
     }
 
     .thumb {
-      flex: 0 0 180px;
-      height: 140px;
+      flex: 0 0 200px;
+      height: 150px;
       object-fit: cover;
       scroll-snap-align: start;
-      border-radius: 2px;
+      border-radius: 4px;
       cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .thumb:hover {
+      transform: scale(1.02);
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 6px;
-        align-items: flex-start;
-      }
-
-      nav a {
-        margin-left: 0;
-        margin-right: 16px;
-      }
-
       .thumb {
-        flex: 0 0 140px;
-        height: 110px;
+        flex: 0 0 150px;
+        height: 120px;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header>
-      <a href="index.html" class="brand">Miguel Lopes</a>
+    <div class="brand">Miguel Lopes</div>
 
-      <nav>
-        <a href="index.html" class="active">Fotografia</a>
-        <a href="sobre.html">Sobre</a>
-      </nav>
-    </header>
-
-    <main>
-      <div class="series-row">
-        <h1 class="series-title">Greve Geral</h1>
-        <div class="thumbs-container">
-  <img class="thumb" src="https://via.placeholder.com/180x140/ddd?text=1" alt="">
-  <img class="thumb" src="https://via.placeholder.com/180x140/ddd?text=2" alt="">
-  <img class="thumb" src="https://via.placeholder.com/180x140/ddd?text=3" alt="">
-        </div>
+    <!-- GREVE GERAL -->
+    <div class="series-row">
+      <div class="series-title">Greve Geral</div>
+      <div class="thumbs-container">
+        <img class="thumb" src="images/greve-geral/GG1.jpg" alt="Greve Geral 1">
+        <img class="thumb" src="images/greve-geral/GG2.jpg" alt="Greve Geral 2">
+        <img class="thumb" src="images/greve-geral/GG3.jpg" alt="Greve Geral 3">
+        <img class="thumb" src="images/greve-geral/GG4.jpg" alt="Greve Geral 4">
+        <img class="thumb" src="images/greve-geral/GG5.jpg" alt="Greve Geral 5">
+        <img class="thumb" src="images/greve-geral/GG6.jpg" alt="Greve Geral 6">
+        <img class="thumb" src="images/greve-geral/GG7.jpg" alt="Greve Geral 7">
+        <img class="thumb" src="images/greve-geral/GG8.jpg" alt="Greve Geral 8">
+        <img class="thumb" src="images/greve-geral/GG9.jpg" alt="Greve Geral 9">
+        <img class="thumb" src="images/greve-geral/GG10.jpg" alt="Greve Geral 10">
+        <img class="thumb" src="images/greve-geral/GG11.jpg" alt="Greve Geral 11">
+        <img class="thumb" src="images/greve-geral/GG12.jpg" alt="Greve Geral 12">
+        <img class="thumb" src="images/greve-geral/GG13.jpg" alt="Greve Geral 13">
+        <img class="thumb" src="images/greve-geral/GG14.jpg" alt="Greve Geral 14">
+        <img class="thumb" src="images/greve-geral/GG15.jpg" alt="Greve Geral 15">
       </div>
-    </main>
+    </div>
+
+    <!-- PAISAGENS (placeholder para agora) -->
+    <div class="series-row">
+      <div class="series-title">Paisagens</div>
+      <div class="thumbs-container">
+        <!-- Vais colocar aqui depois -->
+      </div>
+    </div>
+
+    <!-- WSL -->
+    <div class="series-row">
+      <div class="series-title">WSL</div>
+      <div class="thumbs-container">
+        <!-- Vais colocar aqui depois -->
+      </div>
+    </div>
+
+    <!-- DIVERSOS -->
+    <div class="series-row">
+      <div class="series-title">Diversos</div>
+      <div class="thumbs-container">
+        <!-- Vais colocar aqui depois -->
+      </div>
+    </div>
   </div>
 </body>
 </html>
