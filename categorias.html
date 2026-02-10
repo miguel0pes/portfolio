@@ -21,7 +21,7 @@
       color: var(--text);
     }
     .page {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 40px 24px;
     }
@@ -51,29 +51,82 @@
     nav a:hover {
       text-decoration: underline;
     }
-    .projects-list {
-      display: flex;
-      flex-direction: column;
+
+    /* GRID PROJETOS POSHTAROV */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 24px;
+      margin-top: 40px;
     }
-    .project-item a {
-      font-size: 1.3rem;
-      text-decoration: none;
-      color: var(--text);
+    .project-card {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .project-item a:hover {
-      text-decoration: underline;
+    .project-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .project-card:hover .project-img {
+      transform: scale(1.05);
+    }
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+    .project-title {
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
     .project-meta {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 4px;
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
+    .project-card:hover .project-meta {
+      opacity: 1;
+    }
+
     @media (max-width: 768px) {
       header {
         flex-direction: column;
         gap: 10px;
         align-items: flex-start;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .project-title {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -83,32 +136,56 @@
     <header>
       <a href="index.html" class="brand">Miguel Lopes</a>
       <nav>
-        <a href="categorias.html">Categorias</a>
+        <a href="index.html">Home</a>
         <a href="sobre.html">Sobre</a>
       </nav>
     </header>
 
-    <div class="projects-list">
-      <div class="project-item">
-        <a href="greve-geral.html">Greve Geral</a>
-        <div class="project-meta">Lisboa, 2025</div>
-      </div>
-      <div class="project-item">
-        <a href="nao-as-mega-centrais-solares.html">NÃO às mega centrais solares</a>
-        <div class="project-meta">Portugal, 2025–2026</div>
-      </div>
-      <div class="project-item">
-        <a href="paisagens.html">Paisagens</a>
-        <div class="project-meta">Portugal</div>
-      </div>
-      <div class="project-item">
-        <a href="wsl.html">WSL</a>
-        <div class="project-meta">Vida universitária</div>
-      </div>
-      <div class="project-item">
-        <a href="diversos.html">Diversos</a>
-        <div class="project-meta">Trabalhos soltos</div>
-      </div>
+    <div class="projects-grid">
+      <!-- GREVE GERAL -->
+      <a href="greve-geral.html" class="project-card">
+        <img src="images/greve-geral/GG1.jpg" alt="Greve Geral" class="project-img">
+        <div class="project-overlay">
+          <div class="project-title">Greve Geral</div>
+        </div>
+        <div class="project-meta">Lisboa, 2025 • 15 fotos</div>
+      </a>
+
+      <!-- NÃO ÀS MEGA CENTRAIS SOLARES -->
+      <a href="nao-as-mega-centrais-solares.html" class="project-card">
+        <img src="images/solares/Solar1.jpg" alt="NÃO às mega centrais solares" class="project-img">
+        <div class="project-overlay">
+          <div class="project-title">NÃO às mega centrais solares</div>
+        </div>
+        <div class="project-meta">Portugal, 2025–2026 • 40 fotos</div>
+      </a>
+
+      <!-- PAISAGENS -->
+      <a href="paisagens.html" class="project-card">
+        <img src="images/solares/Solar3.jpg" alt="Paisagens" class="project-img">
+        <div class="project-overlay">
+          <div class="project-title">Paisagens</div>
+        </div>
+        <div class="project-meta">Portugal • Em breve</div>
+      </a>
+
+      <!-- WSL -->
+      <a href="wsl.html" class="project-card">
+        <img src="images/solares/Solar5.jpg" alt="WSL" class="project-img">
+        <div class="project-overlay">
+          <div class="project-title">WSL</div>
+        </div>
+        <div class="project-meta">Vida universitária • Em breve</div>
+      </a>
+
+      <!-- DIVERSOS -->
+      <a href="diversos.html" class="project-card">
+        <img src="images/solares/Solar7.jpg" alt="Diversos" class="project-img">
+        <div class="project-overlay">
+          <div class="project-title">Diversos</div>
+        </div>
+        <div class="project-meta">Trabalhos soltos • Em breve</div>
+      </a>
     </div>
   </div>
 </body>
