@@ -68,14 +68,15 @@
     }
 
     .thumb {
-      flex: 0 0 180px;
-      max-height: 220px;
       width: 180px;
+      height: 140px;
       object-fit: cover;
+      flex-shrink: 0;
       scroll-snap-align: start;
       border-radius: 4px;
       cursor: pointer;
-      transition: transform 0.2s;
+      display: block;
+      border: 2px solid red !important;  /* DEBUG: vais ver isto */
     }
 
     .thumb:hover {
@@ -84,9 +85,8 @@
 
     @media (max-width: 768px) {
       .thumb {
-        flex: 0 0 140px;
-        max-height: 180px;
         width: 140px;
+        height: 110px;
       }
     }
   </style>
@@ -99,16 +99,21 @@
     <div class="series-row">
       <div class="series-title">Greve Geral</div>
       <div class="thumbs-container">
-  <img class="thumb" src="https://picsum.photos/180/220?random=1" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=2" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=3" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=4" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=5" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=6" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=7" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=8" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=9" alt="">
-  <img class="thumb" src="https://picsum.photos/180/220?random=10" alt="">
+        <img class="thumb" src="images/greve-geral/GG1.jpg" alt="Greve Geral 1">
+        <img class="thumb" src="images/greve-geral/GG2.jpg" alt="Greve Geral 2">
+        <img class="thumb" src="images/greve-geral/GG3.jpg" alt="Greve Geral 3">
+        <img class="thumb" src="images/greve-geral/GG4.jpg" alt="Greve Geral 4">
+        <img class="thumb" src="images/greve-geral/GG5.jpg" alt="Greve Geral 5">
+        <img class="thumb" src="images/greve-geral/GG6.jpg" alt="Greve Geral 6">
+        <img class="thumb" src="images/greve-geral/GG7.jpg" alt="Greve Geral 7">
+        <img class="thumb" src="images/greve-geral/GG8.jpg" alt="Greve Geral 8">
+        <img class="thumb" src="images/greve-geral/GG9.jpg" alt="Greve Geral 9">
+        <img class="thumb" src="images/greve-geral/GG10.jpg" alt="Greve Geral 10">
+        <img class="thumb" src="images/greve-geral/GG11.jpg" alt="Greve Geral 11">
+        <img class="thumb" src="images/greve-geral/GG12.jpg" alt="Greve Geral 12">
+        <img class="thumb" src="images/greve-geral/GG13.jpg" alt="Greve Geral 13">
+        <img class="thumb" src="images/greve-geral/GG14.jpg" alt="Greve Geral 14">
+        <img class="thumb" src="images/greve-geral/GG15.jpg" alt="Greve Geral 15">
       </div>
     </div>
 
