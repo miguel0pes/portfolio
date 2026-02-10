@@ -2,143 +2,81 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Miguel Lopes</title>
+  <title>Miguel Lopes v2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <style>
-    :root {
-      --bg: #f7f7f7;
-      --text: #111;
-      --muted: #666;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, sans-serif; 
+      background: #f7f7f7; 
+      padding: 40px 20px; 
+      max-width: 1200px; 
+      margin: 0 auto; 
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    .brand { 
+      font-size: 1.1rem; 
+      font-weight: 600; 
+      text-transform: uppercase; 
+      letter-spacing: 0.04em; 
+      margin-bottom: 60px; 
     }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    .series-row { margin-bottom: 80px; }
+    .series-title { 
+      font-size: 0.85rem; 
+      text-transform: uppercase; 
+      letter-spacing: 0.15em; 
+      margin-bottom: 24px; 
+      color: #666; 
+      font-weight: 500; 
     }
-
-    .page {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 24px;
-    }
-
-    .brand {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 60px;
-    }
-
-    .series-row {
-      margin-bottom: 80px;
-    }
-
-    .series-title {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 24px;
-      color: var(--muted);
-    }
-
     .thumbs-container {
       display: flex;
       gap: 12px;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      scroll-behavior: smooth;
       padding-bottom: 12px;
+      scrollbar-width: none;
     }
-
-    .thumbs-container::-webkit-scrollbar {
-      display: none;
-    }
-
+    .thumbs-container::-webkit-scrollbar { display: none; }
     .thumb {
-      width: 180px;
-      height: 140px;
-      object-fit: cover;
-      flex-shrink: 0;
-      scroll-snap-align: start;
+      width: 180px !important;
+      height: 140px !important;
+      background: #ddd !important;
+      border: 3px solid #ff0000 !important;
       border-radius: 4px;
-      cursor: pointer;
-      display: block;
-      border: 2px solid red !important;  /* DEBUG: vais ver isto */
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-weight: bold;
+      font-size: 12px;
     }
-
-    .thumb:hover {
-      transform: scale(1.02);
-    }
-
     @media (max-width: 768px) {
-      .thumb {
-        width: 140px;
-        height: 110px;
-      }
+      .thumb { width: 140px !important; height: 110px !important; font-size: 10px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="brand">Miguel Lopes</div>
+  <div class="brand">Miguel Lopes</div>
 
-    <!-- GREVE GERAL -->
-    <div class="series-row">
-      <div class="series-title">Greve Geral</div>
-      <div class="thumbs-container">
-        <img class="thumb" src="images/greve-geral/GG1.jpg" alt="Greve Geral 1">
-        <img class="thumb" src="images/greve-geral/GG2.jpg" alt="Greve Geral 2">
-        <img class="thumb" src="images/greve-geral/GG3.jpg" alt="Greve Geral 3">
-        <img class="thumb" src="images/greve-geral/GG4.jpg" alt="Greve Geral 4">
-        <img class="thumb" src="images/greve-geral/GG5.jpg" alt="Greve Geral 5">
-        <img class="thumb" src="images/greve-geral/GG6.jpg" alt="Greve Geral 6">
-        <img class="thumb" src="images/greve-geral/GG7.jpg" alt="Greve Geral 7">
-        <img class="thumb" src="images/greve-geral/GG8.jpg" alt="Greve Geral 8">
-        <img class="thumb" src="images/greve-geral/GG9.jpg" alt="Greve Geral 9">
-        <img class="thumb" src="images/greve-geral/GG10.jpg" alt="Greve Geral 10">
-        <img class="thumb" src="images/greve-geral/GG11.jpg" alt="Greve Geral 11">
-        <img class="thumb" src="images/greve-geral/GG12.jpg" alt="Greve Geral 12">
-        <img class="thumb" src="images/greve-geral/GG13.jpg" alt="Greve Geral 13">
-        <img class="thumb" src="images/greve-geral/GG14.jpg" alt="Greve Geral 14">
-        <img class="thumb" src="images/greve-geral/GG15.jpg" alt="Greve Geral 15">
-      </div>
-    </div>
-
-    <!-- PAISAGENS -->
-    <div class="series-row">
-      <div class="series-title">Paisagens</div>
-      <div class="thumbs-container">
-        <!-- Adicionas aqui depois -->
-      </div>
-    </div>
-
-    <!-- WSL -->
-    <div class="series-row">
-      <div class="series-title">WSL</div>
-      <div class="thumbs-container">
-        <!-- Adicionas aqui depois -->
-      </div>
-    </div>
-
-    <!-- DIVERSOS -->
-    <div class="series-row">
-      <div class="series-title">Diversos</div>
-      <div class="thumbs-container">
-        <!-- Adicionas aqui depois -->
-      </div>
+  <div class="series-row">
+    <div class="series-title">GREVE GERAL</div>
+    <div class="thumbs-container">
+      <div class="thumb">1</div>
+      <div class="thumb">2</div>
+      <div class="thumb">3</div>
+      <div class="thumb">4</div>
+      <div class="thumb">5</div>
+      <div class="thumb">6</div>
+      <div class="thumb">7</div>
+      <div class="thumb">8</div>
+      <div class="thumb">9</div>
+      <div class="thumb">10</div>
+      <div class="thumb">11</div>
+      <div class="thumb">12</div>
+      <div class="thumb">13</div>
+      <div class="thumb">14</div>
+      <div class="thumb">15</div>
     </div>
   </div>
 </body>
