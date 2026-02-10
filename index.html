@@ -2,32 +2,45 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Miguel Lopes v2</title>
+  <title>Miguel Lopes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      font-family: -apple-system, sans-serif; 
-      background: #f7f7f7; 
-      padding: 40px 20px; 
-      max-width: 1200px; 
-      margin: 0 auto; 
+    :root {
+      --bg: #f7f7f7;
+      --text: #111;
+      --muted: #666;
     }
-    .brand { 
-      font-size: 1.1rem; 
-      font-weight: 600; 
-      text-transform: uppercase; 
-      letter-spacing: 0.04em; 
-      margin-bottom: 60px; 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .series-row { margin-bottom: 80px; }
-    .series-title { 
-      font-size: 0.85rem; 
-      text-transform: uppercase; 
-      letter-spacing: 0.15em; 
-      margin-bottom: 24px; 
-      color: #666; 
-      font-weight: 500; 
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+    }
+    .series-row {
+      margin-bottom: 80px;
+    }
+    .series-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      color: var(--muted);
     }
     .thumbs-container {
       display: flex;
@@ -36,13 +49,14 @@
       padding-bottom: 12px;
       scrollbar-width: none;
     }
-    .thumbs-container::-webkit-scrollbar { display: none; }
+    .thumbs-container::-webkit-scrollbar {
+      display: none;
+    }
     .thumb {
-      width: 180px !important;
-      height: 140px !important;
-      background: #ddd !important;
-      border: 3px solid #ff0000 !important;
-      border-radius: 4px;
+      width: 180px;
+      height: 140px;
+      background: #ddd;
+      border: 2px solid #ff4444;
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -50,33 +64,40 @@
       color: #666;
       font-weight: bold;
       font-size: 12px;
+      border-radius: 4px;
     }
     @media (max-width: 768px) {
-      .thumb { width: 140px !important; height: 110px !important; font-size: 10px; }
+      .thumb {
+        width: 140px;
+        height: 110px;
+        font-size: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="brand">Miguel Lopes</div>
+  <div class="page">
+    <div class="brand">Miguel Lopes</div>
 
-  <div class="series-row">
-    <div class="series-title">GREVE GERAL</div>
-    <div class="thumbs-container">
-      <div class="thumb">1</div>
-      <div class="thumb">2</div>
-      <div class="thumb">3</div>
-      <div class="thumb">4</div>
-      <div class="thumb">5</div>
-      <div class="thumb">6</div>
-      <div class="thumb">7</div>
-      <div class="thumb">8</div>
-      <div class="thumb">9</div>
-      <div class="thumb">10</div>
-      <div class="thumb">11</div>
-      <div class="thumb">12</div>
-      <div class="thumb">13</div>
-      <div class="thumb">14</div>
-      <div class="thumb">15</div>
+    <div class="series-row">
+      <div class="series-title">Greve Geral</div>
+      <div class="thumbs-container">
+        <div class="thumb">GG1</div>
+        <div class="thumb">GG2</div>
+        <div class="thumb">GG3</div>
+        <div class="thumb">GG4</div>
+        <div class="thumb">GG5</div>
+        <div class="thumb">GG6</div>
+        <div class="thumb">GG7</div>
+        <div class="thumb">GG8</div>
+        <div class="thumb">GG9</div>
+        <div class="thumb">GG10</div>
+        <div class="thumb">GG11</div>
+        <div class="thumb">GG12</div>
+        <div class="thumb">GG13</div>
+        <div class="thumb">GG14</div>
+        <div class="thumb">GG15</div>
+      </div>
     </div>
   </div>
 </body>
