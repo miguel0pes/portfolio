@@ -87,6 +87,105 @@
     .thumb:hover {
       transform: scale(1.02);
     }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      animation: fadeIn 0.3s;
+    }
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 1200px;
+      height: 90vh;
+      max-height: 90vh;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal img {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      color: white;
+      padding: 16px 24px;
+      font-size: 0.9rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      text-align: center;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1001;
+      line-height: 1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    .close:hover {
+      color: #ccc;
+    }
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s;
+      z-index: 1001;
+    }
+    .nav-arrow:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .prev {
+      left: 20px;
+    }
+    .next {
+      right: 20px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    body.modal-open {
+      overflow: hidden;
+    }
+
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -100,6 +199,15 @@
         width: 200px;
         height: 260px;
       }
+      .modal-content {
+        width: 95vw;
+        height: 85vh;
+      }
+      .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -108,38 +216,150 @@
     <header>
       <a href="index.html" class="brand">Miguel Lopes</a>
       <nav>
-        <a href="categorias.html">Categorias</a>  <!-- ← AQUI ESTAVA A FALTAR! -->
+        <a href="categorias.html">Categorias</a>
         <a href="sobre.html">Sobre</a>
       </nav>
     </header>
 
-    <!-- GREVE GERAL -->
-    <div class="series-row">
+    <!-- GREVE GERAL (15 fotos) -->
+    <div class="series-row" data-series="greve">
       <div class="series-title">Greve Geral</div>
       <div class="thumbs-container">
         <img class="thumb" src="images/greve-geral/GG1.jpg" alt="Greve Geral 1" data-caption="Greve Geral, 2025">
         <img class="thumb" src="images/greve-geral/GG2.jpg" alt="Greve Geral 2" data-caption="Greve Geral, 2025">
-        <!-- ... resto das 15 ... -->
+        <img class="thumb" src="images/greve-geral/GG3.jpg" alt="Greve Geral 3" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG4.jpg" alt="Greve Geral 4" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG5.jpg" alt="Greve Geral 5" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG6.jpg" alt="Greve Geral 6" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG7.jpg" alt="Greve Geral 7" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG8.jpg" alt="Greve Geral 8" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG9.jpg" alt="Greve Geral 9" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG10.jpg" alt="Greve Geral 10" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG11.jpg" alt="Greve Geral 11" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG12.jpg" alt="Greve Geral 12" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG13.jpg" alt="Greve Geral 13" data-caption="Greve Geral, 2025">
+        <img class="thumb" src="images/greve-geral/GG14.jpg" alt="Greve Geral 14" data-caption="Greve Geral, 2025">
         <img class="thumb" src="images/greve-geral/GG15.jpg" alt="Greve Geral 15" data-caption="Greve Geral, 2025">
       </div>
     </div>
 
-    <!-- NÃO ÀS MEGA CENTRAIS SOLARES -->
-    <div class="series-row">
+    <!-- NÃO ÀS MEGA CENTRAIS SOLARES (15 fotos) -->
+    <div class="series-row" data-series="solares">
       <div class="series-title">NÃO às mega centrais solares</div>
       <div class="thumbs-container">
         <img class="thumb" src="images/solares/Solar1.jpg" alt="Solar 1" data-caption="NÃO às mega centrais solares, 2026">
         <img class="thumb" src="images/solares/Solar2.jpg" alt="Solar 2" data-caption="NÃO às mega centrais solares, 2026">
-        <!-- ... resto das 15 ... -->
+        <img class="thumb" src="images/solares/Solar3.jpg" alt="Solar 3" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar4.jpg" alt="Solar 4" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar5.jpg" alt="Solar 5" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar6.jpg" alt="Solar 6" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar7.jpg" alt="Solar 7" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar8.jpg" alt="Solar 8" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar9.jpg" alt="Solar 9" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar10.jpg" alt="Solar 10" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar11.jpg" alt="Solar 11" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar12.jpg" alt="Solar 12" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar13.jpg" alt="Solar 13" data-caption="NÃO às mega centrais solares, 2026">
+        <img class="thumb" src="images/solares/Solar14.jpg" alt="Solar 14" data-caption="NÃO às mega centrais solares, 2026">
         <img class="thumb" src="images/solares/Solar15.jpg" alt="Solar 15" data-caption="NÃO às mega centrais solares, 2026">
       </div>
     </div>
 
-    <!-- OUTRAS -->
+    <!-- OUTRAS CATEGORIAS -->
     <div class="series-row">
       <div class="series-title">Paisagens</div>
       <div class="thumbs-container"></div>
     </div>
+    <div class="series-row">
+      <div class="series-title">WSL</div>
+      <div class="thumbs-container"></div>
+    </div>
+    <div class="series-row">
+      <div class="series-title">Diversos</div>
+      <div class="thumbs-container"></div>
+    </div>
   </div>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <button class="nav-arrow prev" id="prev">‹</button>
+    <button class="nav-arrow next" id="next">›</button>
+    <div class="modal-content">
+      <img id="modal-img">
+      <div id="caption" class="caption"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentThumbs = [];
+    let currentIndex = 0;
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const captionText = document.getElementById('caption');
+    const closeBtn = document.querySelector('.close');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+
+    // Clique nas thumbs abre modal
+    document.querySelectorAll('.thumb').forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        currentThumbs = Array.from(thumb.closest('.series-row').querySelectorAll('.thumb'));
+        currentIndex = currentThumbs.indexOf(thumb);
+        showImage(currentIndex);
+        modal.style.display = 'block';
+        document.body.classList.add('modal-open');
+      });
+    });
+
+    function showImage(index) {
+      const thumb = currentThumbs[index];
+      if (thumb) {
+        modalImg.src = thumb.src;
+        captionText.textContent = thumb.dataset.caption;
+        prevBtn.style.display = index > 0 ? 'flex' : 'none';
+        nextBtn.style.display = index < currentThumbs.length - 1 ? 'flex' : 'none';
+      }
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showImage(currentIndex);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < currentThumbs.length - 1) {
+        currentIndex++;
+        showImage(currentIndex);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (modal.style.display === 'block') {
+        if (e.key === 'Escape') {
+          closeModal();
+        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+          currentIndex--;
+          showImage(currentIndex);
+        } else if (e.key === 'ArrowRight' && currentIndex < currentThumbs.length - 1) {
+          currentIndex++;
+          showImage(currentIndex);
+        }
+      }
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+    }
+  </script>
 </body>
 </html>
