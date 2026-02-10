@@ -52,7 +52,7 @@
       text-decoration: underline;
     }
 
-    /* GRID PROJETOS POSHTAROV */
+    /* GRID SIMPLES - SÓ NOME NO HOVER */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -83,7 +83,7 @@
     .project-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.8);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -95,24 +95,11 @@
     }
     .project-title {
       color: white;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
       text-align: center;
       padding: 20px;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    }
-    .project-meta {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      right: 12px;
-      color: rgba(255,255,255,0.9);
-      font-size: 0.85rem;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .project-card:hover .project-meta {
-      opacity: 1;
     }
 
     @media (max-width: 768px) {
@@ -124,9 +111,6 @@
       .projects-grid {
         grid-template-columns: 1fr;
         gap: 16px;
-      }
-      .project-title {
-        font-size: 1.2rem;
       }
     }
   </style>
@@ -148,7 +132,6 @@
         <div class="project-overlay">
           <div class="project-title">Greve Geral</div>
         </div>
-        <div class="project-meta">Lisboa, 2025 • 15 fotos</div>
       </a>
 
       <!-- NÃO ÀS MEGA CENTRAIS SOLARES -->
@@ -157,7 +140,6 @@
         <div class="project-overlay">
           <div class="project-title">NÃO às mega centrais solares</div>
         </div>
-        <div class="project-meta">Portugal, 2025–2026 • 40 fotos</div>
       </a>
 
       <!-- PAISAGENS -->
@@ -166,7 +148,6 @@
         <div class="project-overlay">
           <div class="project-title">Paisagens</div>
         </div>
-        <div class="project-meta">Portugal • Em breve</div>
       </a>
 
       <!-- WSL -->
@@ -175,7 +156,6 @@
         <div class="project-overlay">
           <div class="project-title">WSL</div>
         </div>
-        <div class="project-meta">Vida universitária • Em breve</div>
       </a>
 
       <!-- DIVERSOS -->
@@ -184,7 +164,6 @@
         <div class="project-overlay">
           <div class="project-title">Diversos</div>
         </div>
-        <div class="project-meta">Trabalhos soltos • Em breve</div>
       </a>
     </div>
   </div>
