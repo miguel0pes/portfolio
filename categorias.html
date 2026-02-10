@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Categorias - Miguel Lopes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --text: #111;
+      --muted: #666;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 60px;
+    }
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: inherit;
+      text-decoration: none;
+    }
+    nav {
+      display: flex;
+      gap: 16px;
+    }
+    nav a {
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .project-item a {
+      font-size: 1.3rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .project-item a:hover {
+      text-decoration: underline;
+    }
+    .project-meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a href="index.html" class="brand">Miguel Lopes</a>
+      <nav>
+        <a href="categorias.html">Categorias</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+    </header>
+
+    <div class="projects-list">
+      <div class="project-item">
+        <a href="greve-geral.html">Greve Geral</a>
+        <div class="project-meta">Lisboa, 2025</div>
+      </div>
+      <div class="project-item">
+        <a href="nao-as-mega-centrais-solares.html">NÃO às mega centrais solares</a>
+        <div class="project-meta">Portugal, 2025–2026</div>
+      </div>
+      <div class="project-item">
+        <a href="paisagens.html">Paisagens</a>
+        <div class="project-meta">Portugal</div>
+      </div>
+      <div class="project-item">
+        <a href="wsl.html">WSL</a>
+        <div class="project-meta">Vida universitária</div>
+      </div>
+      <div class="project-item">
+        <a href="diversos.html">Diversos</a>
+        <div class="project-meta">Trabalhos soltos</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
