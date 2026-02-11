@@ -69,13 +69,15 @@
       margin-bottom: 48px;
     }
     .images-column {
-      max-width: 1000px;
+      max-width: 800px;        /* ← REDUZIDO e CENTRALIZADO */
+      margin: 0 auto;
     }
     .images-column img {
       width: 100%;
+      max-width: 700px;        /* ← IMAGENS MAIS PEQUENAS */
       height: auto;
       display: block;
-      margin-bottom: 32px;
+      margin: 0 auto 32px;     /* ← CENTRALIZADO */
       border-radius: 4px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     }
@@ -90,6 +92,9 @@
       }
       .project-heading {
         font-size: 2rem;
+      }
+      .images-column {
+        max-width: 100%;
       }
       .images-column img {
         margin-bottom: 24px;
@@ -107,12 +112,13 @@
         <a href="sobre.html">Sobre</a>
       </nav>
     </header>
-
+    
     <div class="project-title">Projeto</div>
     <div class="project-heading">Greve Geral</div>
     <div class="project-meta">Lisboa, 2025</div>
-
+    
     <div class="images-column">
+      <!-- TODAS AS 31 FOTOS -->
       <img src="images/greve-geral/GG1.jpg" alt="Greve Geral 1">
       <img src="images/greve-geral/GG2.jpg" alt="Greve Geral 2">
       <img src="images/greve-geral/GG3.jpg" alt="Greve Geral 3">
