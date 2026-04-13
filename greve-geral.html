@@ -7,45 +7,50 @@
 
   <style>
     :root {
-      --bg: #f7f7f7;
+      --bg: #f6f6f3;
       --text: #111;
-      --muted: #666;
+      --muted: #6d6d6d;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
+
     .page {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 24px;
     }
 
-    /* HEADER + HAMBÚRGUER */
-
     header {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 10;
+      padding: 20px 0;
+      z-index: 20;
     }
+
     .brand {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.05rem;
+      font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: inherit;
       text-decoration: none;
     }
+
     .menu-toggle {
       border: none;
       background: none;
@@ -53,131 +58,277 @@
       cursor: pointer;
       padding: 4px 8px;
       line-height: 1;
+      color: var(--text);
     }
-
-    /* MENU OVERLAY */
 
     nav {
       position: fixed;
       top: 0;
       right: 0;
-      width: 240px;
+      width: 300px;
+      max-width: 88vw;
       height: 100vh;
       background: #ffffff;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      padding: 80px 24px 24px;
-      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      gap: 14px;
+      padding: 90px 28px 28px;
+      box-shadow: -8px 0 30px rgba(0,0,0,0.08);
       transform: translateX(100%);
       transition: transform 0.25s ease;
-      z-index: 20;
+      z-index: 30;
     }
+
     nav.open {
       transform: translateX(0);
     }
-    nav a {
+
+    nav a,
+    .menu-link {
       font-size: 0.95rem;
       color: var(--muted);
       text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      display: block;
+      width: 100%;
     }
 
-    /* TÍTULO + GALERIA */
+    nav a:hover,
+    .menu-link:hover {
+      color: var(--text);
+    }
+
+    .menu-section {
+      margin-top: 10px;
+    }
+
+    .portfolio-list {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .portfolio-list.open {
+      display: flex;
+    }
+
+    .portfolio-list a {
+      display: block;
+      width: 100%;
+      line-height: 1.2;
+    }
 
     .series-header {
-      margin-bottom: 24px;
+      margin: 12px 0 32px;
     }
+
     .series-name {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
     }
+
     .series-meta {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--muted);
     }
 
-    .thumbs-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-    .thumb {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .thumb:hover {
-      transform: scale(1.02);
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
-    /* MODAL */
+    .photo-item {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .thumb {
+      max-width: 100%;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      cursor: pointer;
+    }
 
     .modal {
       display: none;
       position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
       z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      animation: fadeIn 0.3s;
     }
-    .modal-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90vw;
-      max-width: 1200px;
-      height: 90vh;
-      max-height: 90vh;
-      border: 1px solid #fff;
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .modal img {
-      flex: 1;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
+
+    .modal.open {
       display: block;
     }
-    .caption {
+
+    .modal-content {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      color: white;
-      padding: 16px 24px;
-      font-size: 0.9rem;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      text-align: center;
+      inset: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
     .close {
       position: absolute;
-      top: 20px;
-      right: 30px;
+      top: 18px;
+      right: 28px;
       color: white;
-      font-size: 32px;
-      font-weight: bold;
+      font-size: 34px;
+      line-height: 1;
       cursor: pointer;
       z-index: 1001;
-      line-height: 1;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
-    .close:hover {
-      color: #ccc;
+
+    @media (max-width: 768px) {
+      .page {
+        padding: 16px;
+      }
+
+      header {
+        padding: 16px 0;
+      }
+
+      .series-header {
+        margin: 8px 0 24px;
+      }
+
+      .thumb {
+        max-height: 72vh;
+      }
+
+      .modal-content {
+        inset: 16px;
+      }
     }
-    .nav-arrow 
-    
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a href="index.html" class="brand">Miguel Lopes</a>
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    </header>
+
+    <nav id="main-menu">
+      <a href="index.html">Início</a>
+
+      <button class="menu-link portfolio-toggle" id="portfolio-toggle" type="button">
+        Portfolio
+      </button>
+
+      <div class="menu-section portfolio-list" id="portfolio-list">
+        <a href="greve-geral.html">Greve Geral</a>
+        <a href="nao-as-mega-centrais-solares.html">Não às mega centrais solares</a>
+        <a href="paisagens.html">Paisagens</a>
+        <a href="wsl.html">WSL</a>
+        <a href="diversos.html">Diversos</a>
+      </div>
+
+      <div class="menu-section">
+        <a href="sobre.html">Sobre</a>
+      </div>
+    </nav>
+
+    <section class="series-header">
+      <h1 class="series-name">Greve Geral</h1>
+      <div class="series-meta">2025</div>
+    </section>
+
+    <main class="gallery">
+      <div class="photo-item"><img src="images/greve-geral/GG1.jpg" class="thumb" alt="Greve Geral 1"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG2.jpg" class="thumb" alt="Greve Geral 2"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG3.jpg" class="thumb" alt="Greve Geral 3"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG4.jpg" class="thumb" alt="Greve Geral 4"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG5.jpg" class="thumb" alt="Greve Geral 5"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG6.jpg" class="thumb" alt="Greve Geral 6"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG7.jpg" class="thumb" alt="Greve Geral 7"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG8.jpg" class="thumb" alt="Greve Geral 8"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG9.jpg" class="thumb" alt="Greve Geral 9"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG10.jpg" class="thumb" alt="Greve Geral 10"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG11.jpg" class="thumb" alt="Greve Geral 11"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG12.jpg" class="thumb" alt="Greve Geral 12"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG13.jpg" class="thumb" alt="Greve Geral 13"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG14.jpg" class="thumb" alt="Greve Geral 14"></div>
+      <div class="photo-item"><img src="images/greve-geral/GG15.jpg" class="thumb" alt="Greve Geral 15"></div>
+    </main>
+  </div>
+
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="Fotografia ampliada">
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainMenu = document.getElementById('main-menu');
+      const portfolioToggle = document.getElementById('portfolio-toggle');
+      const portfolioList = document.getElementById('portfolio-list');
+
+      const thumbs = document.querySelectorAll('.thumb');
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      const closeBtn = document.querySelector('.close');
+
+      menuToggle.addEventListener('click', () => {
+        mainMenu.classList.toggle('open');
+      });
+
+      portfolioToggle.addEventListener('click', () => {
+        portfolioList.classList.toggle('open');
+      });
+
+      thumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          modal.classList.add('open');
+          modalImg.src = thumb.src;
+          modalImg.alt = thumb.alt;
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
