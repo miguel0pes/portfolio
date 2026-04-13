@@ -99,18 +99,30 @@
       font-weight: 500;
     }
 
-    /* GRELHA 2 FOTOS POR LINHA */
+    /* LAYOUT: LINHAS COM VERTICAIS / HORIZONTAIS */
 
-    .thumbs-container {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colunas fixas */
-      gap: 4px;                                       /* quase sem espaços brancos */
+    #random-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
+    .row {
+      display: flex;
+      gap: 4px;
+    }
+    .row-vertical .thumb {
+      flex: 1;               /* 2 verticais lado a lado */
+    }
+    .row-horizontal .thumb {
+      width: 100%;           /* horizontal ocupa a linha toda */
+      flex: 1;
+    }
+
     .thumb {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 0;      /* sem pontas redondas */
+      border-radius: 0;
       cursor: pointer;
       transition: transform 0.2s;
     }
@@ -221,8 +233,8 @@
       .page {
         padding-top: 24px;
       }
-      .thumbs-container {
-        grid-template-columns: 1fr;   /* 1 foto por linha em mobile */
+      .row {
+        flex-direction: column;   /* em mobile fica tudo 1 por linha */
       }
       .modal-content {
         width: 95vw;
@@ -274,41 +286,42 @@
     document.addEventListener('DOMContentLoaded', () => {
       /* ----- LISTA DE TODAS AS FOTOS (todas as categorias) ----- */
       const allPhotos = [
+        // EXEMPLO: ajusta orientation: 'v' (vertical) ou 'h' (horizontal)
         // GREVE GERAL
-        { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG5.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG6.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG7.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG8.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG9.jpg',  caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG10.jpg', caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG11.jpg', caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG12.jpg', caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG13.jpg', caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG14.jpg', caption: 'Greve Geral, 2025' },
-        { src: 'images/greve-geral/GG15.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
+        { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
+        { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG5.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG6.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
+        { src: 'images/greve-geral/GG7.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
+        { src: 'images/greve-geral/GG8.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG9.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG10.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG11.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG12.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG13.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG14.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG15.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
 
         // NÃO ÀS MEGA CENTRAIS SOLARES
-        { src: 'images/solares/Solar1.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar2.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar3.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar4.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar5.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar6.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar7.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar8.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar21.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar23.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar37.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar16.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar22.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-        { src: 'images/solares/Solar40.jpg', caption: 'NÃO às mega centrais solares, 25/26' }
+        { src: 'images/solares/Solar1.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
+        { src: 'images/solares/Solar2.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
+        { src: 'images/solares/Solar3.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar4.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar5.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar6.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
+        { src: 'images/solares/Solar7.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar8.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
+        { src: 'images/solares/Solar21.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
+        { src: 'images/solares/Solar23.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar37.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar16.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar22.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
+        { src: 'images/solares/Solar40.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' }
 
-        // aqui podes juntar Paisagens / WSL / Diversos mais tarde
+        // ajusta orientation para 'h' nas fotos horizontais
       ];
 
       /* ----- SHUFFLE (Fisher-Yates) ----- */
@@ -339,7 +352,18 @@
         });
       }
 
-      /* ----- HOME: GERAR FOTOS ALEATÓRIAS ----- */
+      /* ----- CRIAR THUMB ----- */
+      function createThumb(photo) {
+        const img = document.createElement('img');
+        img.className = 'thumb';
+        img.src = photo.src;
+        img.alt = photo.caption || '';
+        img.dataset.caption = photo.caption || '';
+        img.loading = 'lazy';
+        return img;
+      }
+
+      /* ----- HOME: GERAR LINHAS V / H ----- */
       let currentThumbs = [];
       let currentIndex  = 0;
 
@@ -371,22 +395,50 @@
       }
 
       if (gallery) {
-        const NUM_FOTOS_HOME = 14;  // 7 linhas de 2 fotos, ajusta se quiseres
+        const NUM_FOTOS_HOME = 16;  // ajusta à vontade
 
         const shuffled = shuffleArray([...allPhotos]);
         const selected = shuffled.slice(0, Math.min(NUM_FOTOS_HOME, shuffled.length));
 
+        const verticals   = selected.filter(p => p.orientation !== 'h');
+        const horizontals = selected.filter(p => p.orientation === 'h');
+
         gallery.innerHTML = '';
 
-        selected.forEach((photo) => {
-          const img = document.createElement('img');
-          img.className = 'thumb';
-          img.src = photo.src;
-          img.alt = photo.caption || '';
-          img.dataset.caption = photo.caption || '';
-          img.loading = 'lazy';
-          gallery.appendChild(img);
-        });
+        let useVerticalRow = true;
+
+        while (verticals.length || horizontals.length) {
+          if (useVerticalRow && verticals.length >= 1) {
+            const row = document.createElement('div');
+            row.className = 'row row-vertical';
+
+            const first = verticals.shift();
+            row.appendChild(createThumb(first));
+
+            if (verticals.length) {
+              const second = verticals.shift();
+              row.appendChild(createThumb(second));
+            }
+
+            gallery.appendChild(row);
+          } else if (horizontals.length) {
+            const row = document.createElement('div');
+            row.className = 'row row-horizontal';
+
+            const photo = horizontals.shift();
+            row.appendChild(createThumb(photo));
+
+            gallery.appendChild(row);
+          } else if (verticals.length) {
+            // se só sobrar 1 vertical no fim
+            const row = document.createElement('div');
+            row.className = 'row row-vertical';
+            row.appendChild(createThumb(verticals.shift()));
+            gallery.appendChild(row);
+          }
+
+          useVerticalRow = !useVerticalRow;
+        }
 
         setupModal();
       }
