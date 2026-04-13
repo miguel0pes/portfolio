@@ -84,7 +84,7 @@
       text-decoration: underline;
     }
 
-    /* TÍTULO DA SÉRIE / GALERIA */
+    /* TÍTULO + GALERIA */
 
     .series-row {
       margin-bottom: 40px;
@@ -97,25 +97,19 @@
       color: var(--muted);
       font-weight: 500;
     }
+
+    /* NOVO: grelha responsiva em colunas, só scroll vertical */
     .thumbs-container {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      scrollbar-width: none;
-    }
-    .thumbs-container::-webkit-scrollbar {
-      display: none;
     }
     .thumb {
-      width: 260px;
-      height: 340px;
-      object-fit: cover;
-      object-position: center;
-      flex-shrink: 0;
+      width: 100%;
+      height: auto;
+      display: block;
       border-radius: 6px;
       cursor: pointer;
-      display: block;
       transition: transform 0.2s;
     }
     .thumb:hover {
@@ -225,9 +219,8 @@
       .page {
         padding-top: 24px;
       }
-      .thumb {
-        width: 200px;
-        height: 260px;
+      .thumbs-container {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       }
       .modal-content {
         width: 95vw;
@@ -309,126 +302,4 @@
       { src: 'images/solares/Solar37.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
       { src: 'images/solares/Solar16.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
       { src: 'images/solares/Solar22.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar40.jpg', caption: 'NÃO às mega centrais solares, 25/26' }
-
-      // Se quiseres, adiciona aqui depois as fotos de Paisagens / WSL / Diversos.
-    ];
-
-    /* ----- SHUFFLE (Fisher-Yates) ----- */
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-
-    /* ----- MODAL ----- */
-    let currentThumbs = [];
-    let currentIndex = 0;
-
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-    const captionText = document.getElementById('caption');
-    const closeBtn = document.querySelector('.close');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-
-    function setupModal() {
-      currentThumbs = Array.from(document.querySelectorAll('.thumb'));
-
-      currentThumbs.forEach((thumb) => {
-        thumb.addEventListener('click', () => {
-          currentIndex = currentThumbs.indexOf(thumb);
-          showImage(currentIndex);
-          modal.style.display = 'block';
-          document.body.classList.add('modal-open');
-        });
-      });
-    }
-
-    function showImage(index) {
-      const thumb = currentThumbs[index];
-      if (thumb) {
-        modalImg.src = thumb.src;
-        captionText.textContent = thumb.dataset.caption || '';
-        prevBtn.style.display = index > 0 ? 'flex' : 'none';
-        nextBtn.style.display = index < currentThumbs.length - 1 ? 'flex' : 'none';
-      }
-    }
-
-    function closeModal() {
-      modal.style.display = 'none';
-      document.body.classList.remove('modal-open');
-    }
-
-    prevBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        showImage(currentIndex);
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentIndex < currentThumbs.length - 1) {
-        currentIndex++;
-        showImage(currentIndex);
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (modal.style.display === 'block') {
-        if (e.key === 'Escape') {
-          closeModal();
-        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-          currentIndex--;
-          showImage(currentIndex);
-        } else if (e.key === 'ArrowRight' && currentIndex < currentThumbs.length - 1) {
-          currentIndex++;
-          showImage(currentIndex);
-        }
-      }
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-
-    /* ----- HAMBÚRGUER ----- */
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainMenu = document.getElementById('main-menu');
-
-    menuToggle.addEventListener('click', () => {
-      mainMenu.classList.toggle('open');
-    });
-
-    /* ----- HOME: GERAR FOTOS ALEATÓRIAS ----- */
-    document.addEventListener('DOMContentLoaded', () => {
-      const gallery = document.getElementById('random-gallery');
-      if (!gallery) return;
-
-      const NUM_FOTOS_HOME = 15; // ajusta se quiseres mais/menos
-
-      const shuffled = shuffleArray([...allPhotos]);
-      const selected = shuffled.slice(0, Math.min(NUM_FOTOS_HOME, shuffled.length));
-
-      gallery.innerHTML = '';
-
-      selected.forEach(photo => {
-        const img = document.createElement('img');
-        img.className = 'thumb';
-        img.src = photo.src;
-        img.alt = photo.caption || '';
-        img.dataset.caption = photo.caption || '';
-        img.loading = 'lazy';
-        gallery.appendChild(img);
-      });
-
-      // depois de criar as thumbs, liga o modal
-      setupModal();
-    });
-  </script>
-</body>
-</html>
+      { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26' 
