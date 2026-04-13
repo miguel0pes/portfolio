@@ -2,115 +2,189 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Categorias - Miguel Lopes</title>
+  <title>Miguel Lopes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     :root {
-      --bg: #f7f7f7;
+      --bg: #f6f6f3;
       --text: #111;
-      --muted: #666;
+      --muted: #6d6d6d;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
       background: var(--bg);
       color: var(--text);
+      overflow-x: hidden;
     }
+
     .page {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 40px 24px;
+      min-height: 100vh;
+      width: 100%;
+      padding: 24px;
+      position: relative;
     }
+
     header {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      right: 24px;
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 60px;
+      align-items: center;
+      z-index: 20;
     }
+
     .brand {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.05rem;
+      font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: inherit;
       text-decoration: none;
     }
-    nav {
-      display: flex;
-      gap: 16px;
+
+    .menu-toggle {
+      border: none;
+      background: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      color: var(--text);
     }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      max-width: 88vw;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 90px 28px 28px;
+      box-shadow: -8px 0 30px rgba(0,0,0,0.08);
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+      z-index: 30;
+    }
+
+    nav.open {
+      transform: translateX(0);
+    }
+
     nav a {
       font-size: 0.95rem;
       color: var(--muted);
       text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    /* GRID SIMPLES - SÓ NOME NO HOVER */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
+    nav a:hover {
+      color: var(--text);
     }
-    .project-card {
-      position: relative;
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
+
+    .menu-section {
+      margin-top: 10px;
     }
-    .project-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+
+    .menu-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
     }
-    .project-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-    .project-card:hover .project-img {
-      transform: scale(1.05);
-    }
-    .project-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.8);
+
+    main {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s;
+      padding: 72px 24px 24px;
     }
-    .project-card:hover .project-overlay {
-      opacity: 1;
+
+    .home-photo {
+      max-width: min(92vw, 1200px);
+      max-height: 82vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      cursor: pointer;
     }
-    .project-title {
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
+      z-index: 1000;
+    }
+
+    .modal.open {
+      display: block;
+    }
+
+    .modal-content {
+      position: absolute;
+      inset: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .close {
+      position: absolute;
+      top: 18px;
+      right: 28px;
       color: white;
-      font-size: 1.5rem;
-      font-weight: 600;
-      text-align: center;
-      padding: 20px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      font-size: 34px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1001;
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
+      .page {
+        padding: 16px;
       }
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
+
+      header {
+        top: 16px;
+        left: 16px;
+        right: 16px;
+      }
+
+      main {
+        padding: 64px 12px 12px;
+      }
+
+      .home-photo {
+        max-width: 94vw;
+        max-height: 74vh;
+      }
+
+      .modal-content {
+        inset: 16px;
       }
     }
   </style>
@@ -119,53 +193,117 @@
   <div class="page">
     <header>
       <a href="index.html" class="brand">Miguel Lopes</a>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="sobre.html">Sobre</a>
-      </nav>
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
     </header>
 
-    <div class="projects-grid">
-      <!-- GREVE GERAL -->
-      <a href="greve-geral.html" class="project-card">
-        <img src="images/greve-geral/GG1.jpg" alt="Greve Geral" class="project-img">
-        <div class="project-overlay">
-          <div class="project-title">Greve Geral</div>
-        </div>
-      </a>
+    <nav id="main-menu">
+      <a href="index.html">Início</a>
+      <a href="portfolio.html">Portfolio</a>
 
-      <!-- NÃO ÀS MEGA CENTRAIS SOLARES -->
-      <a href="nao-as-mega-centrais-solares.html" class="project-card">
-        <img src="images/solares/Solar1.jpg" alt="NÃO às mega centrais solares" class="project-img">
-        <div class="project-overlay">
-          <div class="project-title">NÃO às mega centrais solares</div>
-        </div>
-      </a>
+      <div class="menu-section">
+        <div class="menu-label">Séries</div>
+        <a href="greve-geral.html">Greve Geral</a>
+        <a href="nao-as-mega-centrais-solares.html">Não às mega centrais solares</a>
+        <a href="paisagens.html">Paisagens</a>
+        <a href="wsl.html">WSL</a>
+        <a href="diversos.html">Diversos</a>
+      </div>
 
-      <!-- PAISAGENS -->
-      <a href="paisagens.html" class="project-card">
-        <img src="images/solares/Solar3.jpg" alt="Paisagens" class="project-img">
-        <div class="project-overlay">
-          <div class="project-title">Paisagens</div>
-        </div>
-      </a>
+      <div class="menu-section">
+        <a href="sobre.html">Sobre</a>
+      </div>
+    </nav>
 
-      <!-- WSL -->
-      <a href="wsl.html" class="project-card">
-        <img src="images/solares/Solar5.jpg" alt="WSL" class="project-img">
-        <div class="project-overlay">
-          <div class="project-title">WSL</div>
-        </div>
-      </a>
+    <main>
+      <img id="random-photo" class="home-photo" src="" alt="Fotografia em destaque">
+    </main>
+  </div>
 
-      <!-- DIVERSOS -->
-      <a href="diversos.html" class="project-card">
-        <img src="images/solares/Solar7.jpg" alt="Diversos" class="project-img">
-        <div class="project-overlay">
-          <div class="project-title">Diversos</div>
-        </div>
-      </a>
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="Fotografia ampliada">
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const allPhotos = [
+        { src: 'images/greve-geral/GG1.jpg' },
+        { src: 'images/greve-geral/GG2.jpg' },
+        { src: 'images/greve-geral/GG3.jpg' },
+        { src: 'images/greve-geral/GG4.jpg' },
+        { src: 'images/greve-geral/GG5.jpg' },
+        { src: 'images/greve-geral/GG6.jpg' },
+        { src: 'images/greve-geral/GG7.jpg' },
+        { src: 'images/greve-geral/GG8.jpg' },
+        { src: 'images/greve-geral/GG9.jpg' },
+        { src: 'images/greve-geral/GG10.jpg' },
+        { src: 'images/greve-geral/GG11.jpg' },
+        { src: 'images/greve-geral/GG12.jpg' },
+        { src: 'images/greve-geral/GG13.jpg' },
+        { src: 'images/greve-geral/GG14.jpg' },
+        { src: 'images/greve-geral/GG15.jpg' },
+
+        { src: 'images/solares/Solar1.jpg' },
+        { src: 'images/solares/Solar2.jpg' },
+        { src: 'images/solares/Solar3.jpg' },
+        { src: 'images/solares/Solar4.jpg' },
+        { src: 'images/solares/Solar5.jpg' },
+        { src: 'images/solares/Solar6.jpg' },
+        { src: 'images/solares/Solar7.jpg' },
+        { src: 'images/solares/Solar8.jpg' },
+        { src: 'images/solares/Solar16.jpg' },
+        { src: 'images/solares/Solar21.jpg' },
+        { src: 'images/solares/Solar22.jpg' },
+        { src: 'images/solares/Solar23.jpg' },
+        { src: 'images/solares/Solar28.jpg' },
+        { src: 'images/solares/Solar37.jpg' },
+        { src: 'images/solares/Solar40.jpg' }
+      ];
+
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainMenu = document.getElementById('main-menu');
+      const randomPhoto = document.getElementById('random-photo');
+
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      const closeBtn = document.querySelector('.close');
+
+      menuToggle.addEventListener('click', () => {
+        mainMenu.classList.toggle('open');
+      });
+
+      const randomIndex = Math.floor(Math.random() * allPhotos.length);
+      const selectedPhoto = allPhotos[randomIndex];
+
+      randomPhoto.src = selectedPhoto.src;
+
+      randomPhoto.addEventListener('click', () => {
+        modal.classList.add('open');
+        modalImg.src = selectedPhoto.src;
+        document.body.style.overflow = 'hidden';
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
