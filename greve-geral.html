@@ -28,18 +28,24 @@
     .page {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 110px 24px 24px;
     }
 
     header {
-      position: sticky;
-      top: 0;
-      background: var(--bg);
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      right: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
-      z-index: 20;
+      z-index: 40;
+      pointer-events: none;
+    }
+
+    header .brand,
+    header .menu-toggle {
+      pointer-events: auto;
     }
 
     .brand {
@@ -125,7 +131,7 @@
     }
 
     .series-header {
-      margin: 12px 0 32px;
+      margin: 0 0 32px;
     }
 
     .series-name {
@@ -202,15 +208,17 @@
 
     @media (max-width: 768px) {
       .page {
-        padding: 16px;
+        padding: 96px 16px 16px;
       }
 
       header {
-        padding: 16px 0;
+        top: 16px;
+        left: 16px;
+        right: 16px;
       }
 
       .series-header {
-        margin: 8px 0 24px;
+        margin: 0 0 24px;
       }
 
       .thumb {
