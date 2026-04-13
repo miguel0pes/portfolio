@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Miguel Lopes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     :root {
       --bg: #f7f7f7;
@@ -26,11 +27,16 @@
       margin: 0 auto;
       padding: 40px 24px;
     }
+
+    /* HEADER + HAMBÚRGUER */
+
     header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       margin-bottom: 60px;
+      position: relative;
+      z-index: 10;
     }
     .brand {
       font-size: 1.1rem;
@@ -40,9 +46,34 @@
       color: inherit;
       text-decoration: none;
     }
+    .menu-toggle {
+      border: none;
+      background: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+    }
+
+    /* MENU OVERLAY (só abre pelo hambúrguer) */
+
     nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 100vh;
+      background: #ffffff;
       display: flex;
+      flex-direction: column;
       gap: 16px;
+      padding: 80px 24px 24px;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+    }
+    nav.open {
+      transform: translateX(0);
     }
     nav a {
       font-size: 0.95rem;
@@ -52,8 +83,11 @@
     nav a:hover {
       text-decoration: underline;
     }
+
+    /* TÍTULO DA SÉRIE / GALERIA */
+
     .series-row {
-      margin-bottom: 80px;
+      margin-bottom: 40px;
     }
     .series-title {
       font-size: 0.85rem;
@@ -89,6 +123,7 @@
     }
 
     /* MODAL */
+
     .modal {
       display: none;
       position: fixed;
@@ -187,13 +222,8 @@
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-      }
-      nav {
-        gap: 16px;
+      .page {
+        padding-top: 24px;
       }
       .thumb {
         width: 200px;
@@ -215,68 +245,22 @@
   <div class="page">
     <header>
       <a href="index.html" class="brand">Miguel Lopes</a>
-      <nav>
-        <a href="categorias.html">Categorias</a>
-        <a href="sobre.html">Sobre</a>
-      </nav>
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
     </header>
 
-    <!-- GREVE GERAL (15 fotos) -->
-    <div class="series-row" data-series="greve">
-      <div class="series-title">Greve Geral</div>
-      <div class="thumbs-container">
-        <img class="thumb" src="images/greve-geral/GG1.jpg" alt="Greve Geral 1" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG2.jpg" alt="Greve Geral 2" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG3.jpg" alt="Greve Geral 3" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG4.jpg" alt="Greve Geral 4" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG5.jpg" alt="Greve Geral 5" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG6.jpg" alt="Greve Geral 6" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG7.jpg" alt="Greve Geral 7" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG8.jpg" alt="Greve Geral 8" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG9.jpg" alt="Greve Geral 9" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG10.jpg" alt="Greve Geral 10" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG11.jpg" alt="Greve Geral 11" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG12.jpg" alt="Greve Geral 12" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG13.jpg" alt="Greve Geral 13" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG14.jpg" alt="Greve Geral 14" data-caption="Greve Geral, 2025">
-        <img class="thumb" src="images/greve-geral/GG15.jpg" alt="Greve Geral 15" data-caption="Greve Geral, 2025">
-      </div>
-    </div>
+    <!-- MENU HAMBÚRGUER (overlay) -->
+    <nav id="main-menu">
+      <a href="index.html">Início</a>
+      <a href="categorias.html">Categorias</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
 
-    <!-- NÃO ÀS MEGA CENTRAIS SOLARES (15 fotos) -->
-    <div class="series-row" data-series="solares">
-      <div class="series-title">NÃO às mega centrais solares</div>
-      <div class="thumbs-container">
-       <img class="thumb" src="images/solares/Solar1.jpg" alt="Solar 1" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar2.jpg" alt="Solar 2" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar3.jpg" alt="Solar 3" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar4.jpg" alt="Solar 4" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar5.jpg" alt="Solar 5" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar6.jpg" alt="Solar 6" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar7.jpg" alt="Solar 7" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar8.jpg" alt="Solar 8" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar21.jpg" alt="Solar 21" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar23.jpg" alt="Solar 23" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar37.jpg" alt="Solar 37" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar16.jpg" alt="Solar 16" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar22.jpg" alt="Solar 22" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar28.jpg" alt="Solar 28" data-caption="NÃO às mega centrais solares, 25/26">
-        <img class="thumb" src="images/solares/Solar40.jpg" alt="Solar 40" data-caption="NÃO às mega centrais solares, 25/26">
+    <!-- HOME: apenas fotos aleatórias de todas as categorias -->
+    <div class="series-row">
+      <div class="series-title">Seleção aleatória</div>
+      <div class="thumbs-container" id="random-gallery">
+        <!-- As fotos aleatórias são inseridas via JavaScript -->
       </div>
-    </div>
-
-    <!-- OUTRAS CATEGORIAS -->
-    <div class="series-row">
-      <div class="series-title">Paisagens</div>
-      <div class="thumbs-container"></div>
-    </div>
-    <div class="series-row">
-      <div class="series-title">WSL</div>
-      <div class="thumbs-container"></div>
-    </div>
-    <div class="series-row">
-      <div class="series-title">Diversos</div>
-      <div class="thumbs-container"></div>
     </div>
   </div>
 
@@ -286,12 +270,61 @@
     <button class="nav-arrow prev" id="prev">‹</button>
     <button class="nav-arrow next" id="next">›</button>
     <div class="modal-content">
-      <img id="modal-img">
+      <img id="modal-img" alt="">
       <div id="caption" class="caption"></div>
     </div>
   </div>
 
   <script>
+    /* ----- LISTA DE TODAS AS FOTOS (todas as categorias) ----- */
+    const allPhotos = [
+      // GREVE GERAL
+      { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG5.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG6.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG7.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG8.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG9.jpg',  caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG10.jpg', caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG11.jpg', caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG12.jpg', caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG13.jpg', caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG14.jpg', caption: 'Greve Geral, 2025' },
+      { src: 'images/greve-geral/GG15.jpg', caption: 'Greve Geral, 2025' },
+
+      // NÃO ÀS MEGA CENTRAIS SOLARES
+      { src: 'images/solares/Solar1.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar2.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar3.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar4.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar5.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar6.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar7.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar8.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar21.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar23.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar37.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar16.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar22.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+      { src: 'images/solares/Solar40.jpg', caption: 'NÃO às mega centrais solares, 25/26' }
+
+      // Se quiseres, adiciona aqui depois as fotos de Paisagens / WSL / Diversos.
+    ];
+
+    /* ----- SHUFFLE (Fisher-Yates) ----- */
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    /* ----- MODAL ----- */
     let currentThumbs = [];
     let currentIndex = 0;
 
@@ -302,25 +335,32 @@
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
 
-    // Clique nas thumbs abre modal
-    document.querySelectorAll('.thumb').forEach((thumb) => {
-      thumb.addEventListener('click', () => {
-        currentThumbs = Array.from(thumb.closest('.series-row').querySelectorAll('.thumb'));
-        currentIndex = currentThumbs.indexOf(thumb);
-        showImage(currentIndex);
-        modal.style.display = 'block';
-        document.body.classList.add('modal-open');
+    function setupModal() {
+      currentThumbs = Array.from(document.querySelectorAll('.thumb'));
+
+      currentThumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          currentIndex = currentThumbs.indexOf(thumb);
+          showImage(currentIndex);
+          modal.style.display = 'block';
+          document.body.classList.add('modal-open');
+        });
       });
-    });
+    }
 
     function showImage(index) {
       const thumb = currentThumbs[index];
       if (thumb) {
         modalImg.src = thumb.src;
-        captionText.textContent = thumb.dataset.caption;
+        captionText.textContent = thumb.dataset.caption || '';
         prevBtn.style.display = index > 0 ? 'flex' : 'none';
         nextBtn.style.display = index < currentThumbs.length - 1 ? 'flex' : 'none';
       }
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      document.body.classList.remove('modal-open');
     }
 
     prevBtn.addEventListener('click', () => {
@@ -356,10 +396,39 @@
       if (e.target === modal) closeModal();
     });
 
-    function closeModal() {
-      modal.style.display = 'none';
-      document.body.classList.remove('modal-open');
-    }
+    /* ----- HAMBÚRGUER ----- */
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainMenu = document.getElementById('main-menu');
+
+    menuToggle.addEventListener('click', () => {
+      mainMenu.classList.toggle('open');
+    });
+
+    /* ----- HOME: GERAR FOTOS ALEATÓRIAS ----- */
+    document.addEventListener('DOMContentLoaded', () => {
+      const gallery = document.getElementById('random-gallery');
+      if (!gallery) return;
+
+      const NUM_FOTOS_HOME = 15; // ajusta se quiseres mais/menos
+
+      const shuffled = shuffleArray([...allPhotos]);
+      const selected = shuffled.slice(0, Math.min(NUM_FOTOS_HOME, shuffled.length));
+
+      gallery.innerHTML = '';
+
+      selected.forEach(photo => {
+        const img = document.createElement('img');
+        img.className = 'thumb';
+        img.src = photo.src;
+        img.alt = photo.caption || '';
+        img.dataset.caption = photo.caption || '';
+        img.loading = 'lazy';
+        gallery.appendChild(img);
+      });
+
+      // depois de criar as thumbs, liga o modal
+      setupModal();
+    });
   </script>
 </body>
 </html>
