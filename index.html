@@ -111,18 +111,18 @@
       gap: 4px;
     }
 
-    /* Linha com 2 verticais lado a lado */
+    /* 2 verticais lado a lado (mais pequenas) */
     .row-vertical .thumb {
       flex: 1;
-      height: 380px;            /* altura controlada */
-      object-fit: cover;        /* corta um bocadinho, não distorce */
+      height: 260px;           /* antes 380px */
+      object-fit: cover;
     }
 
-    /* Linha com 1 horizontal grande */
+    /* 1 horizontal grande (ligeiramente maior) */
     .row-horizontal .thumb {
       width: 100%;
       flex: 1;
-      height: 460px;            /* horizontais um pouco mais altas = mais “peso” */
+      height: 320px;           /* antes 460px */
       object-fit: cover;
     }
 
@@ -245,7 +245,7 @@
       }
       .row-vertical .thumb,
       .row-horizontal .thumb {
-        height: 260px;          /* alturas mais baixas em mobile */
+        height: 220px;         /* ainda mais pequeno em mobile */
       }
       .modal-content {
         width: 95vw;
@@ -276,9 +276,7 @@
     <!-- HOME: apenas fotos aleatórias de todas as categorias -->
     <div class="series-row">
       <div class="series-title">Seleção aleatória</div>
-      <div class="thumbs-container" id="random-gallery">
-        <!-- As fotos aleatórias são inseridas via JavaScript -->
-      </div>
+      <div class="thumbs-container" id="random-gallery"></div>
     </div>
   </div>
 
@@ -295,12 +293,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      /* ----- LISTA DE TODAS AS FOTOS (todas as categorias) ----- */
       const allPhotos = [
-        // AJUSTA orientation: 'v' (vertical) ou 'h' (horizontal) foto a foto
-
-        // marca aqui como 'h' todas as que forem horizontais
-      { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
+        // marca manualmente 'v' ou 'h' conforme a foto
+       { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
         { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
         { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
         { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
@@ -333,6 +328,7 @@
         { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
         { src: 'images/solares/Solar40.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' }
 
+      ];
 
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
