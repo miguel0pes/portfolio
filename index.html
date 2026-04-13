@@ -10,7 +10,6 @@
       --bg: #f6f6f3;
       --text: #111;
       --muted: #6d6d6d;
-      --line: #dddddd;
     }
 
     * {
@@ -23,28 +22,30 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
       background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     .page {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 36px 24px 48px;
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
     }
 
     header {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      right: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 48px;
-      position: relative;
-      z-index: 10;
+      z-index: 20;
     }
 
     .brand {
-      font-size: 1.75rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: inherit;
       text-decoration: none;
@@ -96,8 +97,6 @@
 
     .menu-section {
       margin-top: 10px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
     }
 
     .menu-label {
@@ -108,72 +107,22 @@
       margin-bottom: 10px;
     }
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 1.6fr;
-      gap: 28px;
-      align-items: end;
-    }
-
-    .hero-text {
-      padding-bottom: 18px;
-    }
-
-    .hero-kicker {
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 5rem);
-      line-height: 0.95;
-      margin-bottom: 18px;
-      text-transform: uppercase;
-    }
-
-    .hero p {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 34ch;
-      line-height: 1.5;
-    }
-
-    .hero-meta {
-      margin-top: 26px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .hero-image-wrap {
-      width: 100%;
-      background: #ecebe7;
-      min-height: 60vh;
+    main {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      padding: 24px;
     }
 
-    .hero-image {
-      width: 100%;
-      height: 100%;
-      max-height: 78vh;
+    .home-photo {
+      max-width: 92vw;
+      max-height: 82vh;
+      width: auto;
+      height: auto;
       object-fit: contain;
       display: block;
       cursor: pointer;
-    }
-
-    .hero-caption {
-      margin-top: 12px;
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
     }
 
     .modal {
@@ -190,7 +139,7 @@
 
     .modal-content {
       position: absolute;
-      inset: 32px;
+      inset: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -213,40 +162,24 @@
       z-index: 1001;
     }
 
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .hero-image-wrap {
-        min-height: auto;
-      }
-
-      .hero-image {
-        max-height: 68vh;
-      }
-
-      .brand {
-        font-size: 1.4rem;
-      }
-    }
-
     @media (max-width: 768px) {
-      .page {
-        padding: 22px 16px 32px;
-      }
-
       header {
-        margin-bottom: 28px;
+        top: 16px;
+        left: 16px;
+        right: 16px;
       }
 
-      .hero h1 {
-        font-size: 2.5rem;
+      main {
+        padding: 12px;
+      }
+
+      .home-photo {
+        max-width: 94vw;
+        max-height: 74vh;
       }
 
       .modal-content {
-        inset: 20px;
+        inset: 16px;
       }
     }
   </style>
@@ -276,22 +209,8 @@
       </div>
     </nav>
 
-    <main class="hero">
-      <section class="hero-text">
-        <div class="hero-kicker">Portfolio</div>
-        <h1>Fotografia documental e autoral</h1>
-        <p>
-          Uma seleção aleatória do meu trabalho entre protesto, território, paisagem e observação do quotidiano.
-        </p>
-        <div class="hero-meta" id="hero-meta">Imagem em destaque</div>
-      </section>
-
-      <section>
-        <div class="hero-image-wrap">
-          <img id="random-photo" class="hero-image" src="" alt="Fotografia em destaque">
-        </div>
-        <div id="photo-caption" class="hero-caption"></div>
-      </section>
+    <main>
+      <img id="random-photo" class="home-photo" src="" alt="Fotografia em destaque">
     </main>
   </div>
 
@@ -305,24 +224,42 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const allPhotos = [
-        { src: 'images/greve-geral/GG1.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
-        { src: 'images/greve-geral/GG2.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
-        { src: 'images/greve-geral/GG3.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
-        { src: 'images/greve-geral/GG4.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
-        { src: 'images/greve-geral/GG5.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
+        { src: 'images/greve-geral/GG1.jpg' },
+        { src: 'images/greve-geral/GG2.jpg' },
+        { src: 'images/greve-geral/GG3.jpg' },
+        { src: 'images/greve-geral/GG4.jpg' },
+        { src: 'images/greve-geral/GG5.jpg' },
+        { src: 'images/greve-geral/GG6.jpg' },
+        { src: 'images/greve-geral/GG7.jpg' },
+        { src: 'images/greve-geral/GG8.jpg' },
+        { src: 'images/greve-geral/GG9.jpg' },
+        { src: 'images/greve-geral/GG10.jpg' },
+        { src: 'images/greve-geral/GG11.jpg' },
+        { src: 'images/greve-geral/GG12.jpg' },
+        { src: 'images/greve-geral/GG13.jpg' },
+        { src: 'images/greve-geral/GG14.jpg' },
+        { src: 'images/greve-geral/GG15.jpg' },
 
-        { src: 'images/solares/Solar1.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' },
-        { src: 'images/solares/Solar2.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' },
-        { src: 'images/solares/Solar3.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' },
-        { src: 'images/solares/Solar4.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' },
-        { src: 'images/solares/Solar5.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' }
+        { src: 'images/solares/Solar1.jpg' },
+        { src: 'images/solares/Solar2.jpg' },
+        { src: 'images/solares/Solar3.jpg' },
+        { src: 'images/solares/Solar4.jpg' },
+        { src: 'images/solares/Solar5.jpg' },
+        { src: 'images/solares/Solar6.jpg' },
+        { src: 'images/solares/Solar7.jpg' },
+        { src: 'images/solares/Solar8.jpg' },
+        { src: 'images/solares/Solar16.jpg' },
+        { src: 'images/solares/Solar21.jpg' },
+        { src: 'images/solares/Solar22.jpg' },
+        { src: 'images/solares/Solar23.jpg' },
+        { src: 'images/solares/Solar28.jpg' },
+        { src: 'images/solares/Solar37.jpg' },
+        { src: 'images/solares/Solar40.jpg' }
       ];
 
       const menuToggle = document.querySelector('.menu-toggle');
       const mainMenu = document.getElementById('main-menu');
       const randomPhoto = document.getElementById('random-photo');
-      const photoCaption = document.getElementById('photo-caption');
-      const heroMeta = document.getElementById('hero-meta');
 
       const modal = document.getElementById('modal');
       const modalImg = document.getElementById('modal-img');
@@ -336,14 +273,10 @@
       const selectedPhoto = allPhotos[randomIndex];
 
       randomPhoto.src = selectedPhoto.src;
-      randomPhoto.alt = selectedPhoto.caption;
-      photoCaption.textContent = selectedPhoto.caption;
-      heroMeta.textContent = selectedPhoto.series;
 
       randomPhoto.addEventListener('click', () => {
         modal.classList.add('open');
         modalImg.src = selectedPhoto.src;
-        modalImg.alt = selectedPhoto.caption;
         document.body.style.overflow = 'hidden';
       });
 
