@@ -83,15 +83,24 @@
       transform: translateX(0);
     }
 
-    nav a {
+    nav a,
+    .menu-link {
       font-size: 0.95rem;
       color: var(--muted);
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      display: block;
+      width: 100%;
     }
 
-    nav a:hover {
+    nav a:hover,
+    .menu-link:hover {
       color: var(--text);
     }
 
@@ -105,6 +114,22 @@
       text-transform: uppercase;
       letter-spacing: 0.14em;
       margin-bottom: 10px;
+    }
+
+    .portfolio-list {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .portfolio-list.open {
+      display: flex;
+    }
+
+    .portfolio-list a {
+      display: block;
+      width: 100%;
+      line-height: 1.2;
     }
 
     main {
@@ -193,9 +218,12 @@
 
     <nav id="main-menu">
       <a href="index.html">Início</a>
-      <a href="portfolio.html">Portfolio</a>
 
-      <div class="menu-section">
+      <button class="menu-link portfolio-toggle" id="portfolio-toggle" type="button">
+        Portfolio
+      </button>
+
+      <div class="menu-section portfolio-list" id="portfolio-list">
         <div class="menu-label">Séries</div>
         <a href="greve-geral.html">Greve Geral</a>
         <a href="nao-as-mega-centrais-solares.html">Não às mega centrais solares</a>
@@ -259,6 +287,8 @@
 
       const menuToggle = document.querySelector('.menu-toggle');
       const mainMenu = document.getElementById('main-menu');
+      const portfolioToggle = document.getElementById('portfolio-toggle');
+      const portfolioList = document.getElementById('portfolio-list');
       const randomPhoto = document.getElementById('random-photo');
 
       const modal = document.getElementById('modal');
@@ -267,6 +297,10 @@
 
       menuToggle.addEventListener('click', () => {
         mainMenu.classList.toggle('open');
+      });
+
+      portfolioToggle.addEventListener('click', () => {
+        portfolioList.classList.toggle('open');
       });
 
       const randomIndex = Math.floor(Math.random() * allPhotos.length);
