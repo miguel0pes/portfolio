@@ -23,4 +23,410 @@
       overflow-x: hidden;
     }
     .page {
-     
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* HEADER + HAMBÚRGUER */
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 10;
+    }
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: inherit;
+      text-decoration: none;
+    }
+    .menu-toggle {
+      border: none;
+      background: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+    }
+
+    /* MENU OVERLAY (só abre pelo hambúrguer) */
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 80px 24px 24px;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+      z-index: 20;
+    }
+    nav.open {
+      transform: translateX(0);
+    }
+    nav a {
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* TÍTULO + GALERIA */
+
+    .series-row {
+      margin-bottom: 40px;
+    }
+    .series-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* GRELHA RESPONSIVA – SCROLL SÓ VERTICAL */
+
+    .thumbs-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .thumb {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .thumb:hover {
+      transform: scale(1.02);
+    }
+
+    /* MODAL */
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      animation: fadeIn 0.3s;
+    }
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 1200px;
+      height: 90vh;
+      max-height: 90vh;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal img {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      color: white;
+      padding: 16px 24px;
+      font-size: 0.9rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      text-align: center;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1001;
+      line-height: 1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    .close:hover {
+      color: #ccc;
+    }
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s;
+      z-index: 1001;
+    }
+    .nav-arrow:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .prev {
+      left: 20px;
+    }
+    .next {
+      right: 20px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding-top: 24px;
+      }
+      .thumbs-container {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+      .modal-content {
+        width: 95vw;
+        height: 85vh;
+      }
+      .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a href="index.html" class="brand">Miguel Lopes</a>
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    </header>
+
+    <!-- MENU HAMBÚRGUER (overlay) -->
+    <nav id="main-menu">
+      <a href="index.html">Início</a>
+      <a href="categorias.html">Categorias</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+
+    <!-- HOME: apenas fotos aleatórias de todas as categorias -->
+    <div class="series-row">
+      <div class="series-title">Seleção aleatória</div>
+      <div class="thumbs-container" id="random-gallery">
+        <!-- As fotos aleatórias são inseridas via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <button class="nav-arrow prev" id="prev">‹</button>
+    <button class="nav-arrow next" id="next">›</button>
+    <div class="modal-content">
+      <img id="modal-img" alt="">
+      <div id="caption" class="caption"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* ----- LISTA DE TODAS AS FOTOS (todas as categorias) ----- */
+      const allPhotos = [
+        // GREVE GERAL
+        { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG5.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG6.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG7.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG8.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG9.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG10.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG11.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG12.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG13.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG14.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG15.jpg', caption: 'Greve Geral, 2025' },
+
+        // NÃO ÀS MEGA CENTRAIS SOLARES
+        { src: 'images/solares/Solar1.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar2.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar3.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar4.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar5.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar6.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar7.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar8.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar21.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar23.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar37.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar16.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar22.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar40.jpg', caption: 'NÃO às mega centrais solares, 25/26' }
+
+        // aqui podes juntar Paisagens / WSL / Diversos mais tarde
+      ];
+
+      /* ----- SHUFFLE (Fisher-Yates) ----- */
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      /* ----- ELEMENTOS ----- */
+      const gallery    = document.getElementById('random-gallery');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainMenu   = document.getElementById('main-menu');
+
+      const modal      = document.getElementById('modal');
+      const modalImg   = document.getElementById('modal-img');
+      const captionEl  = document.getElementById('caption');
+      const closeBtn   = document.querySelector('.close');
+      const prevBtn    = document.getElementById('prev');
+      const nextBtn    = document.getElementById('next');
+
+      /* ----- HAMBÚRGUER ----- */
+      if (menuToggle && mainMenu) {
+        menuToggle.addEventListener('click', () => {
+          mainMenu.classList.toggle('open');
+        });
+      }
+
+      /* ----- HOME: GERAR FOTOS ALEATÓRIAS ----- */
+      let currentThumbs = [];
+      let currentIndex  = 0;
+
+      function setupModal() {
+        currentThumbs = Array.from(document.querySelectorAll('.thumb'));
+
+        currentThumbs.forEach((thumb) => {
+          thumb.addEventListener('click', () => {
+            currentIndex = currentThumbs.indexOf(thumb);
+            showImage(currentIndex);
+            modal.style.display = 'block';
+            document.body.classList.add('modal-open');
+          });
+        });
+      }
+
+      function showImage(index) {
+        const thumb = currentThumbs[index];
+        if (!thumb) return;
+        modalImg.src = thumb.src;
+        captionEl.textContent = thumb.dataset.caption || '';
+        prevBtn.style.display = index > 0 ? 'flex' : 'none';
+        nextBtn.style.display = index < currentThumbs.length - 1 ? 'flex' : 'none';
+      }
+
+      function closeModal() {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+      }
+
+      if (gallery) {
+        const NUM_FOTOS_HOME = 15;
+
+        const shuffled = shuffleArray([...allPhotos]);
+        const selected = shuffled.slice(0, Math.min(NUM_FOTOS_HOME, shuffled.length));
+
+        gallery.innerHTML = '';
+
+        selected.forEach((photo) => {
+          const img = document.createElement('img');
+          img.className = 'thumb';
+          img.src = photo.src;
+          img.alt = photo.caption || '';
+          img.dataset.caption = photo.caption || '';
+          img.loading = 'lazy';
+          gallery.appendChild(img);
+        });
+
+        setupModal();
+      }
+
+      /* ----- CONTROLOS DO MODAL ----- */
+      if (prevBtn && nextBtn && closeBtn && modal) {
+        prevBtn.addEventListener('click', () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            showImage(currentIndex);
+          }
+        });
+
+        nextBtn.addEventListener('click', () => {
+          if (currentIndex < currentThumbs.length - 1) {
+            currentIndex++;
+            showImage(currentIndex);
+          }
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (modal.style.display === 'block') {
+            if (e.key === 'Escape') {
+              closeModal();
+            } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+              currentIndex--;
+              showImage(currentIndex);
+            } else if (e.key === 'ArrowRight' && currentIndex < currentThumbs.length - 1) {
+              currentIndex++;
+              showImage(currentIndex);
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
