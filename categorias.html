@@ -22,19 +22,18 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
       background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     .page {
       min-height: 100vh;
       width: 100%;
-      padding: 24px;
       position: relative;
     }
 
     header {
       position: absolute;
-      top: 24px;
+      top: 20px;
       left: 24px;
       right: 24px;
       display: flex;
@@ -113,11 +112,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 72px 24px 24px;
+      padding: 24px;
     }
 
     .home-photo {
-      max-width: min(92vw, 1200px);
+      max-width: 92vw;
       max-height: 82vh;
       width: auto;
       height: auto;
@@ -164,10 +163,6 @@
     }
 
     @media (max-width: 768px) {
-      .page {
-        padding: 16px;
-      }
-
       header {
         top: 16px;
         left: 16px;
@@ -175,7 +170,7 @@
       }
 
       main {
-        padding: 64px 12px 12px;
+        padding: 12px;
       }
 
       .home-photo {
