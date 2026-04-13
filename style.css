@@ -1,190 +1,70 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Helvetica', Arial, sans-serif;
-  background: #ffffff;
-  color: #000000;
-  max-width: 900px;
-  margin: auto;
-  padding: 50px 20px;
-}
-
-header h1 {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 50px;
-  font-family: 'Georgia', serif; /* muda para a fonte que quiseres */
-}
-
-.gallery img {
-  width: 100%;
-  margin-bottom: 50px;
-  cursor: pointer;
-}
-
-.side-menu {
+nav {
   position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
+  top: 0;
+  right: 0;
+  width: 300px;
+  max-width: 88vw;
+  height: 100vh;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  font-size: 14px;
+  gap: 14px;
+  padding: 90px 28px 28px;
+  box-shadow: -8px 0 30px rgba(0,0,0,0.08);
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  z-index: 30;
 }
 
-.side-menu a {
-  color: black;
+nav.open {
+  transform: translateX(0);
+}
+
+nav a,
+.menu-link {
+  font-size: 0.95rem;
+  color: var(--muted);
   text-decoration: none;
-  transition: opacity 0.3s;
-}
-
-.side-menu a:hover {
-  opacity: 0.4;
-}
-
-footer {
-  margin-top: 140px;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-/* animações subtis */
-.fade {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Botão hamburger (escondido no desktop) */
-.menu-btn {
-  display: none;
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 2000;
-  background: rgba(255,255,255,0.95);
-  border: 1px solid #eee;
-  padding: 10px 12px;
-  font-size: 20px;
-  line-height: 1;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .menu-btn {
-    display: block;
-  }
-
-  /* menu escondido por defeito */
-  .side-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: none;
-    height: 100vh;
-    width: 75vw;
-    max-width: 280px;
-    padding: 70px 20px 20px 20px;
-    background: rgba(255,255,255,0.98);
-    z-index: 1500;
-
-    /* escondido fora do ecrã */
-    translate: -110% 0;
-    transition: translate 0.25s ease;
-  }
-
-  /* quando aberto */
-  .side-menu.open {
-    translate: 0 0;
-  }
-
-  /* para não ficar colado na borda no mobile */
-  body {
-    padding: 50px 16px;
-  }
-}
-
-/* Garantir que o menu fica acima das imagens */
-.side-menu {
-  z-index: 1500;
-}
-
-/* Botão hambúrguer (escondido no desktop) */
-.menu-btn {
-  display: none;
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 2000;
-  background: rgba(255,255,255,0.95);
-  border: 1px solid #eee;
-  padding: 10px 12px;
-  font-size: 20px;
-  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
   cursor: pointer;
+  display: block;
+  width: 100%;
 }
 
-/* Overlay (só aparece quando o menu abre) */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  z-index: 1400;
+nav a:hover,
+.menu-link:hover {
+  color: var(--text);
 }
 
-/* Mobile: menu “off-canvas” */
-@media (max-width: 768px) {
-  .menu-btn { display: block; }
-
-  .side-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: none;
-    height: 100vh;
-    width: 75vw;
-    max-width: 280px;
-    padding: 70px 20px 20px 20px;
-    background: rgba(255,255,255,0.98);
-
-    /* escondido por defeito */
-    translate: -110% 0;
-    transition: translate 0.25s ease;
-  }
-
-  .side-menu.open {
-    translate: 0 0;
-  }
-
-  .menu-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Ajuste de margens no mobile */
-  body {
-    padding: 50px 16px;
-  }
+.menu-section {
+  margin-top: 10px;
 }
 
-.brand {
-  color: inherit;
-  text-decoration: none;
+.menu-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
 }
 
-.brand:hover {
-  opacity: 0.5;
+.portfolio-list {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.portfolio-list.open {
+  display: flex;
+}
+
+.portfolio-list a {
+  display: block;
+  width: 100%;
+  line-height: 1.2;
 }
