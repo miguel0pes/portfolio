@@ -32,14 +32,20 @@
     }
 
     header {
-      position: absolute;
+      position: fixed;
       top: 20px;
       left: 24px;
       right: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 20;
+      z-index: 40;
+      pointer-events: none;
+    }
+
+    header .brand,
+    header .menu-toggle {
+      pointer-events: auto;
     }
 
     .brand {
