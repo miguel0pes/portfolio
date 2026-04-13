@@ -49,3 +49,9 @@ if (menuBtn && sideMenu && overlay) {
     a.addEventListener('click', closeMenu);
   });
 }
+const portfolioToggle = document.getElementById('portfolio-toggle');
+const portfolioList = document.getElementById('portfolio-list');
+
+portfolioToggle.addEventListener('click', () => {
+  portfolioList.classList.toggle('open');
+});
