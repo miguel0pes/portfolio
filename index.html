@@ -110,17 +110,24 @@
       display: flex;
       gap: 4px;
     }
+
+    /* Linha com 2 verticais lado a lado */
     .row-vertical .thumb {
-      flex: 1;               /* 2 verticais lado a lado */
-    }
-    .row-horizontal .thumb {
-      width: 100%;           /* horizontal ocupa a linha toda */
       flex: 1;
+      height: 380px;            /* altura controlada */
+      object-fit: cover;        /* corta um bocadinho, não distorce */
+    }
+
+    /* Linha com 1 horizontal grande */
+    .row-horizontal .thumb {
+      width: 100%;
+      flex: 1;
+      height: 460px;            /* horizontais um pouco mais altas = mais “peso” */
+      object-fit: cover;
     }
 
     .thumb {
       width: 100%;
-      height: auto;
       display: block;
       border-radius: 0;
       cursor: pointer;
@@ -234,7 +241,11 @@
         padding-top: 24px;
       }
       .row {
-        flex-direction: column;   /* em mobile fica tudo 1 por linha */
+        flex-direction: column;
+      }
+      .row-vertical .thumb,
+      .row-horizontal .thumb {
+        height: 260px;          /* alturas mais baixas em mobile */
       }
       .modal-content {
         width: 95vw;
@@ -286,9 +297,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       /* ----- LISTA DE TODAS AS FOTOS (todas as categorias) ----- */
       const allPhotos = [
-        // EXEMPLO: ajusta orientation: 'v' (vertical) ou 'h' (horizontal)
-        // GREVE GERAL
-        { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
+        // AJUSTA orientation: 'v' (vertical) ou 'h' (horizontal) foto a foto
+
+        // marca aqui como 'h' todas as que forem horizontais
+      { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
         { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
         { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
         { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
@@ -321,10 +333,7 @@
         { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
         { src: 'images/solares/Solar40.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' }
 
-        // ajusta orientation para 'h' nas fotos horizontais
-      ];
 
-      /* ----- SHUFFLE (Fisher-Yates) ----- */
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -333,7 +342,6 @@
         return array;
       }
 
-      /* ----- ELEMENTOS ----- */
       const gallery    = document.getElementById('random-gallery');
       const menuToggle = document.querySelector('.menu-toggle');
       const mainMenu   = document.getElementById('main-menu');
@@ -345,14 +353,12 @@
       const prevBtn    = document.getElementById('prev');
       const nextBtn    = document.getElementById('next');
 
-      /* ----- HAMBÚRGUER ----- */
       if (menuToggle && mainMenu) {
         menuToggle.addEventListener('click', () => {
           mainMenu.classList.toggle('open');
         });
       }
 
-      /* ----- CRIAR THUMB ----- */
       function createThumb(photo) {
         const img = document.createElement('img');
         img.className = 'thumb';
@@ -363,13 +369,11 @@
         return img;
       }
 
-      /* ----- HOME: GERAR LINHAS V / H ----- */
       let currentThumbs = [];
       let currentIndex  = 0;
 
       function setupModal() {
         currentThumbs = Array.from(document.querySelectorAll('.thumb'));
-
         currentThumbs.forEach((thumb) => {
           thumb.addEventListener('click', () => {
             currentIndex = currentThumbs.indexOf(thumb);
@@ -395,7 +399,7 @@
       }
 
       if (gallery) {
-        const NUM_FOTOS_HOME = 16;  // ajusta à vontade
+        const NUM_FOTOS_HOME = 16;
 
         const shuffled = shuffleArray([...allPhotos]);
         const selected = shuffled.slice(0, Math.min(NUM_FOTOS_HOME, shuffled.length));
@@ -404,33 +408,21 @@
         const horizontals = selected.filter(p => p.orientation === 'h');
 
         gallery.innerHTML = '';
-
         let useVerticalRow = true;
 
         while (verticals.length || horizontals.length) {
-          if (useVerticalRow && verticals.length >= 1) {
+          if (useVerticalRow && verticals.length >= 2) {
             const row = document.createElement('div');
             row.className = 'row row-vertical';
-
-            const first = verticals.shift();
-            row.appendChild(createThumb(first));
-
-            if (verticals.length) {
-              const second = verticals.shift();
-              row.appendChild(createThumb(second));
-            }
-
+            row.appendChild(createThumb(verticals.shift()));
+            row.appendChild(createThumb(verticals.shift()));
             gallery.appendChild(row);
           } else if (horizontals.length) {
             const row = document.createElement('div');
             row.className = 'row row-horizontal';
-
-            const photo = horizontals.shift();
-            row.appendChild(createThumb(photo));
-
+            row.appendChild(createThumb(horizontals.shift()));
             gallery.appendChild(row);
           } else if (verticals.length) {
-            // se só sobrar 1 vertical no fim
             const row = document.createElement('div');
             row.className = 'row row-vertical';
             row.appendChild(createThumb(verticals.shift()));
@@ -443,7 +435,6 @@
         setupModal();
       }
 
-      /* ----- CONTROLOS DO MODAL ----- */
       if (prevBtn && nextBtn && closeBtn && modal) {
         prevBtn.addEventListener('click', () => {
           if (currentIndex > 0) {
