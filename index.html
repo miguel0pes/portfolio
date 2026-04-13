@@ -99,12 +99,12 @@
       font-weight: 500;
     }
 
-    /* GRELHA RESPONSIVA – QUASE SEM ESPAÇOS */
+    /* GRELHA 2 FOTOS POR LINHA */
 
     .thumbs-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 4px;              /* diminui os “espaços brancos” */
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colunas fixas */
+      gap: 4px;                                       /* quase sem espaços brancos */
     }
     .thumb {
       width: 100%;
@@ -222,7 +222,7 @@
         padding-top: 24px;
       }
       .thumbs-container {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: 1fr;   /* 1 foto por linha em mobile */
       }
       .modal-content {
         width: 95vw;
@@ -371,7 +371,7 @@
       }
 
       if (gallery) {
-        const NUM_FOTOS_HOME = 15;
+        const NUM_FOTOS_HOME = 14;  // 7 linhas de 2 fotos, ajusta se quiseres
 
         const shuffled = shuffleArray([...allPhotos]);
         const selected = shuffled.slice(0, Math.min(NUM_FOTOS_HOME, shuffled.length));
