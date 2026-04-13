@@ -99,24 +99,23 @@
       font-weight: 500;
     }
 
-    /* MASONRY – SEM ESPAÇOS EM BRANCO */
+    /* GRELHA RESPONSIVA – QUASE SEM ESPAÇOS */
 
     .thumbs-container {
-      column-count: 4;
-      column-gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 4px;              /* diminui os “espaços brancos” */
     }
     .thumb {
       width: 100%;
       height: auto;
       display: block;
-      margin-bottom: 12px;
-      border-radius: 0;          /* sem pontas redondas */
+      border-radius: 0;      /* sem pontas redondas */
       cursor: pointer;
       transition: transform 0.2s;
-      break-inside: avoid-column;
     }
     .thumb:hover {
-      transform: scale(1.02);
+      transform: scale(1.01);
     }
 
     /* MODAL */
@@ -218,14 +217,13 @@
       overflow: hidden;
     }
 
-    @media (max-width: 1024px) {
-      .thumbs-container { column-count: 3; }
-    }
     @media (max-width: 768px) {
       .page {
         padding-top: 24px;
       }
-      .thumbs-container { column-count: 2; }
+      .thumbs-container {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
       .modal-content {
         width: 95vw;
         height: 85vh;
