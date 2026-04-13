@@ -28,18 +28,24 @@
     .page {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 110px 24px 24px;
     }
 
     header {
-      position: sticky;
-      top: 0;
-      background: var(--bg);
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      right: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
-      z-index: 20;
+      z-index: 40;
+      pointer-events: none;
+    }
+
+    header .brand,
+    header .menu-toggle {
+      pointer-events: auto;
     }
 
     .brand {
@@ -125,7 +131,7 @@
     }
 
     .series-header {
-      margin: 12px 0 32px;
+      margin: 0 0 32px;
     }
 
     .series-name {
@@ -202,15 +208,17 @@
 
     @media (max-width: 768px) {
       .page {
-        padding: 16px;
+        padding: 96px 16px 16px;
       }
 
       header {
-        padding: 16px 0;
+        top: 16px;
+        left: 16px;
+        right: 16px;
       }
 
       .series-header {
-        margin: 8px 0 24px;
+        margin: 0 0 24px;
       }
 
       .thumb {
@@ -279,4 +287,79 @@
       <div class="photo-item"><img src="images/solares/Solar21.jpg" class="thumb" alt="Não às mega centrais solares 21"></div>
       <div class="photo-item"><img src="images/solares/Solar22.jpg" class="thumb" alt="Não às mega centrais solares 22"></div>
       <div class="photo-item"><img src="images/solares/Solar23.jpg" class="thumb" alt="Não às mega centrais solares 23"></div>
-      <div class="photo-item"><img src="images/solares/Solar24.jpg" class="thumb" alt="Não às mega centrais 
+      <div class="photo-item"><img src="images/solares/Solar24.jpg" class="thumb" alt="Não às mega centrais solares 24"></div>
+      <div class="photo-item"><img src="images/solares/Solar25.jpg" class="thumb" alt="Não às mega centrais solares 25"></div>
+      <div class="photo-item"><img src="images/solares/Solar26.jpg" class="thumb" alt="Não às mega centrais solares 26"></div>
+      <div class="photo-item"><img src="images/solares/Solar27.jpg" class="thumb" alt="Não às mega centrais solares 27"></div>
+      <div class="photo-item"><img src="images/solares/Solar28.jpg" class="thumb" alt="Não às mega centrais solares 28"></div>
+      <div class="photo-item"><img src="images/solares/Solar29.jpg" class="thumb" alt="Não às mega centrais solares 29"></div>
+      <div class="photo-item"><img src="images/solares/Solar30.jpg" class="thumb" alt="Não às mega centrais solares 30"></div>
+      <div class="photo-item"><img src="images/solares/Solar31.jpg" class="thumb" alt="Não às mega centrais solares 31"></div>
+      <div class="photo-item"><img src="images/solares/Solar32.jpg" class="thumb" alt="Não às mega centrais solares 32.jpg" class="thumb" alt="Não às mega centmg src="images/solares/Solar33.jpg" class="thumb" alt="Não às mega centrais solares 33"></div>
+      <div class="p.jpg" class="thumb" alt="Não às mega cent34.jpg" class="thumb" alt="Não às mega centrais solares 34"></div>
+      <div class="photo-item"><img src="images/solares/Solar35.jpg" class="thumb" alt="Não às mega centrais solares 35"></div>
+      <div class="photo-item"><img src="images/solares/Solar36.jpg" class="thumb" alt="Não às mega centrais solares 36"></div>
+      <div class="photo-item"><img src="images/solares/Solar37.jpg" class="thumb" alt="Não às mega centrais solares 37"></div>
+      <div class="photo-item"><img src="images/solares/Solar38.jpg" class="thumb" alt="Não às mega cent.jpg" class="thumb" alt="Não às mega cent"photo-item"><img src="images/solares/Solar39.jpg" class="thumb" alt="Não às mega centrais solares 39"></div>
+      <div class="photo-item"><img src="images/solares/Solar40.jpg" class="thumb" alt="Não às mega centrais solares 40"></div>
+    </main>
+  </div>
+
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="Fotografia ampliada">
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainMenu = document.getElementById('main-menu');
+      const portfolioToggle = document.getElementById('portfolio-toggle');
+      const portfolioList = document.getElementById('portfolio-list');
+
+      const thumbs = document.querySelectorAll('.thumb');
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      const closeBtn = document.querySelector('.close');
+
+      menuToggle.addEventListener('click', () => {
+        mainMenu.classList.toggle('open');
+      });
+
+      portfolioToggle.addEventListener('click', () => {
+        portfolioList.classList.toggle('open');
+      });
+
+      thumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          modal.classList.add('open');
+          modalImg.src = thumb.src;
+          modalImg.alt = thumb.alt;
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
