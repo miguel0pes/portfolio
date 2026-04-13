@@ -71,6 +71,7 @@
       box-shadow: -4px 0 20px rgba(0,0,0,0.1);
       transform: translateX(100%);
       transition: transform 0.25s ease;
+      z-index: 20;
     }
     nav.open {
       transform: translateX(0);
@@ -98,7 +99,8 @@
       font-weight: 500;
     }
 
-    /* NOVO: grelha responsiva em colunas, só scroll vertical */
+    /* GRELHA RESPONSIVA – SCROLL SÓ VERTICAL */
+
     .thumbs-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -269,37 +271,30 @@
   </div>
 
   <script>
-    /* ----- LISTA DE TODAS AS FOTOS (todas as categorias) ----- */
-    const allPhotos = [
-      // GREVE GERAL
-      { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG5.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG6.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG7.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG8.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG9.jpg',  caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG10.jpg', caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG11.jpg', caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG12.jpg', caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG13.jpg', caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG14.jpg', caption: 'Greve Geral, 2025' },
-      { src: 'images/greve-geral/GG15.jpg', caption: 'Greve Geral, 2025' },
+    document.addEventListener('DOMContentLoaded', () => {
+      /* ----- LISTA DE TODAS AS FOTOS (todas as categorias) ----- */
+      const allPhotos = [
+        // GREVE GERAL
+        { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG5.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG6.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG7.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG8.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG9.jpg',  caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG10.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG11.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG12.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG13.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG14.jpg', caption: 'Greve Geral, 2025' },
+        { src: 'images/greve-geral/GG15.jpg', caption: 'Greve Geral, 2025' },
 
-      // NÃO ÀS MEGA CENTRAIS SOLARES
-      { src: 'images/solares/Solar1.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar2.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar3.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar4.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar5.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar6.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar7.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar8.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar21.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar23.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar37.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar16.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar22.jpg', caption: 'NÃO às mega centrais solares, 25/26' },
-      { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26' 
+        // NÃO ÀS MEGA CENTRAIS SOLARES
+        { src: 'images/solares/Solar1.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar2.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar3.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar4.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar5.jpg',  caption: 'NÃO às mega centrais solares, 25/26' },
+        { src: 'images/solares/Solar6.jpg',  caption: 'NÃO 
