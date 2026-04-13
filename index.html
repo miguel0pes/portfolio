@@ -7,45 +7,49 @@
 
   <style>
     :root {
-      --bg: #f7f7f7;
+      --bg: #f6f6f3;
       --text: #111;
-      --muted: #666;
+      --muted: #6d6d6d;
+      --line: #dddddd;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
-    .page {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 24px;
-    }
 
-    /* HEADER + HAMBÚRGUER */
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 36px 24px 48px;
+    }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 60px;
+      margin-bottom: 48px;
       position: relative;
       z-index: 10;
     }
+
     .brand {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: inherit;
       text-decoration: none;
     }
+
     .menu-toggle {
       border: none;
       background: none;
@@ -53,208 +57,196 @@
       cursor: pointer;
       padding: 4px 8px;
       line-height: 1;
+      color: var(--text);
     }
-
-    /* MENU OVERLAY (só abre pelo hambúrguer) */
 
     nav {
       position: fixed;
       top: 0;
       right: 0;
-      width: 240px;
+      width: 300px;
+      max-width: 88vw;
       height: 100vh;
       background: #ffffff;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      padding: 80px 24px 24px;
-      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      gap: 14px;
+      padding: 90px 28px 28px;
+      box-shadow: -8px 0 30px rgba(0,0,0,0.08);
       transform: translateX(100%);
       transition: transform 0.25s ease;
-      z-index: 20;
+      z-index: 30;
     }
+
     nav.open {
       transform: translateX(0);
     }
+
     nav a {
       font-size: 0.95rem;
       color: var(--muted);
       text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* TÍTULO */
-
-    .series-row {
-      margin-bottom: 40px;
-    }
-    .series-title {
-      font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 24px;
+      letter-spacing: 0.08em;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .menu-section {
+      margin-top: 10px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .menu-label {
+      font-size: 0.72rem;
       color: var(--muted);
-      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
     }
 
-    /* LAYOUT: LINHAS COM VERTICAIS / HORIZONTAIS */
-
-    #random-gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .row {
-      display: flex;
-      gap: 4px;
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1.6fr;
+      gap: 28px;
+      align-items: end;
     }
 
-    /* 2 verticais lado a lado (mais pequenas) */
-    .row-vertical .thumb {
-      flex: 1;
-      height: 260px;           /* antes 380px */
-      object-fit: cover;
+    .hero-text {
+      padding-bottom: 18px;
     }
 
-    /* 1 horizontal grande (ligeiramente maior) */
-    .row-horizontal .thumb {
+    .hero-kicker {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      line-height: 0.95;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 34ch;
+      line-height: 1.5;
+    }
+
+    .hero-meta {
+      margin-top: 26px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-image-wrap {
       width: 100%;
-      flex: 1;
-      height: 320px;           /* antes 460px */
-      object-fit: cover;
+      background: #ecebe7;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    .thumb {
+    .hero-image {
       width: 100%;
+      height: 100%;
+      max-height: 78vh;
+      object-fit: contain;
       display: block;
-      border-radius: 0;
       cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .thumb:hover {
-      transform: scale(1.01);
     }
 
-    /* MODAL */
+    .hero-caption {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
     .modal {
       display: none;
       position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
       z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      animation: fadeIn 0.3s;
     }
-    .modal-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90vw;
-      max-width: 1200px;
-      height: 90vh;
-      max-height: 90vh;
-      border: 1px solid #fff;
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .modal img {
-      flex: 1;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
+
+    .modal.open {
       display: block;
     }
-    .caption {
+
+    .modal-content {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      color: white;
-      padding: 16px 24px;
-      font-size: 0.9rem;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      text-align: center;
-    }
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 32px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 1001;
-      line-height: 1;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    }
-    .close:hover {
-      color: #ccc;
-    }
-    .nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.2);
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
+      inset: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(10px);
-      transition: all 0.2s;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .close {
+      position: absolute;
+      top: 18px;
+      right: 28px;
+      color: white;
+      font-size: 34px;
+      line-height: 1;
+      cursor: pointer;
       z-index: 1001;
     }
-    .nav-arrow:hover {
-      background: rgba(255,255,255,0.3);
-      transform: translateY(-50%) scale(1.1);
-    }
-    .prev {
-      left: 20px;
-    }
-    .next {
-      right: 20px;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    body.modal-open {
-      overflow: hidden;
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .hero-image-wrap {
+        min-height: auto;
+      }
+
+      .hero-image {
+        max-height: 68vh;
+      }
+
+      .brand {
+        font-size: 1.4rem;
+      }
     }
 
     @media (max-width: 768px) {
       .page {
-        padding-top: 24px;
+        padding: 22px 16px 32px;
       }
-      .row {
-        flex-direction: column;
+
+      header {
+        margin-bottom: 28px;
       }
-      .row-vertical .thumb,
-      .row-horizontal .thumb {
-        height: 220px;         /* ainda mais pequeno em mobile */
+
+      .hero h1 {
+        font-size: 2.5rem;
       }
+
       .modal-content {
-        width: 95vw;
-        height: 85vh;
-      }
-      .nav-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        inset: 20px;
       }
     }
   </style>
@@ -266,205 +258,113 @@
       <button class="menu-toggle" aria-label="Abrir menu">☰</button>
     </header>
 
-    <!-- MENU HAMBÚRGUER (overlay) -->
     <nav id="main-menu">
       <a href="index.html">Início</a>
-      <a href="categorias.html">Categorias</a>
-      <a href="sobre.html">Sobre</a>
+      <a href="portfolio.html">Portfolio</a>
+
+      <div class="menu-section">
+        <div class="menu-label">Séries</div>
+        <a href="greve-geral.html">Greve Geral</a>
+        <a href="nao-as-mega-centrais-solares.html">Não às mega centrais solares</a>
+        <a href="paisagens.html">Paisagens</a>
+        <a href="wsl.html">WSL</a>
+        <a href="diversos.html">Diversos</a>
+      </div>
+
+      <div class="menu-section">
+        <a href="sobre.html">Sobre</a>
+      </div>
     </nav>
 
-    <!-- HOME: apenas fotos aleatórias de todas as categorias -->
-    <div class="series-row">
-      <div class="series-title">Seleção aleatória</div>
-      <div class="thumbs-container" id="random-gallery"></div>
-    </div>
+    <main class="hero">
+      <section class="hero-text">
+        <div class="hero-kicker">Portfolio</div>
+        <h1>Fotografia documental e autoral</h1>
+        <p>
+          Uma seleção aleatória do meu trabalho entre protesto, território, paisagem e observação do quotidiano.
+        </p>
+        <div class="hero-meta" id="hero-meta">Imagem em destaque</div>
+      </section>
+
+      <section>
+        <div class="hero-image-wrap">
+          <img id="random-photo" class="hero-image" src="" alt="Fotografia em destaque">
+        </div>
+        <div id="photo-caption" class="hero-caption"></div>
+      </section>
+    </main>
   </div>
 
-  <!-- MODAL -->
   <div id="modal" class="modal">
     <span class="close">&times;</span>
-    <button class="nav-arrow prev" id="prev">‹</button>
-    <button class="nav-arrow next" id="next">›</button>
     <div class="modal-content">
-      <img id="modal-img" alt="">
-      <div id="caption" class="caption"></div>
+      <img id="modal-img" src="" alt="Fotografia ampliada">
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const allPhotos = [
-        // marca manualmente 'v' ou 'h' conforme a foto
-       { src: 'images/greve-geral/GG1.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
-        { src: 'images/greve-geral/GG2.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
-        { src: 'images/greve-geral/GG3.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG4.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG5.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG6.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
-        { src: 'images/greve-geral/GG7.jpg',  caption: 'Greve Geral, 2025', orientation: 'h' },
-        { src: 'images/greve-geral/GG8.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG9.jpg',  caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG10.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG11.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG12.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG13.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG14.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
-        { src: 'images/greve-geral/GG15.jpg', caption: 'Greve Geral, 2025', orientation: 'v' },
+        { src: 'images/greve-geral/GG1.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
+        { src: 'images/greve-geral/GG2.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
+        { src: 'images/greve-geral/GG3.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
+        { src: 'images/greve-geral/GG4.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
+        { src: 'images/greve-geral/GG5.jpg', caption: 'Greve Geral, 2025', series: 'Greve Geral' },
 
-        // NÃO ÀS MEGA CENTRAIS SOLARES
-        { src: 'images/solares/Solar1.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
-        { src: 'images/solares/Solar2.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
-        { src: 'images/solares/Solar3.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar4.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar5.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar6.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
-        { src: 'images/solares/Solar7.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar8.jpg',  caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
-        { src: 'images/solares/Solar21.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'v' },
-        { src: 'images/solares/Solar23.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar37.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar16.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar22.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar28.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' },
-        { src: 'images/solares/Solar40.jpg', caption: 'NÃO às mega centrais solares, 25/26', orientation: 'h' }
-
+        { src: 'images/solares/Solar1.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' },
+        { src: 'images/solares/Solar2.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' },
+        { src: 'images/solares/Solar3.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' },
+        { src: 'images/solares/Solar4.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' },
+        { src: 'images/solares/Solar5.jpg', caption: 'Não às mega centrais solares, 25/26', series: 'Não às mega centrais solares' }
       ];
 
-      function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-      }
-
-      const gallery    = document.getElementById('random-gallery');
       const menuToggle = document.querySelector('.menu-toggle');
-      const mainMenu   = document.getElementById('main-menu');
+      const mainMenu = document.getElementById('main-menu');
+      const randomPhoto = document.getElementById('random-photo');
+      const photoCaption = document.getElementById('photo-caption');
+      const heroMeta = document.getElementById('hero-meta');
 
-      const modal      = document.getElementById('modal');
-      const modalImg   = document.getElementById('modal-img');
-      const captionEl  = document.getElementById('caption');
-      const closeBtn   = document.querySelector('.close');
-      const prevBtn    = document.getElementById('prev');
-      const nextBtn    = document.getElementById('next');
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      const closeBtn = document.querySelector('.close');
 
-      if (menuToggle && mainMenu) {
-        menuToggle.addEventListener('click', () => {
-          mainMenu.classList.toggle('open');
-        });
-      }
+      menuToggle.addEventListener('click', () => {
+        mainMenu.classList.toggle('open');
+      });
 
-      function createThumb(photo) {
-        const img = document.createElement('img');
-        img.className = 'thumb';
-        img.src = photo.src;
-        img.alt = photo.caption || '';
-        img.dataset.caption = photo.caption || '';
-        img.loading = 'lazy';
-        return img;
-      }
+      const randomIndex = Math.floor(Math.random() * allPhotos.length);
+      const selectedPhoto = allPhotos[randomIndex];
 
-      let currentThumbs = [];
-      let currentIndex  = 0;
+      randomPhoto.src = selectedPhoto.src;
+      randomPhoto.alt = selectedPhoto.caption;
+      photoCaption.textContent = selectedPhoto.caption;
+      heroMeta.textContent = selectedPhoto.series;
 
-      function setupModal() {
-        currentThumbs = Array.from(document.querySelectorAll('.thumb'));
-        currentThumbs.forEach((thumb) => {
-          thumb.addEventListener('click', () => {
-            currentIndex = currentThumbs.indexOf(thumb);
-            showImage(currentIndex);
-            modal.style.display = 'block';
-            document.body.classList.add('modal-open');
-          });
-        });
-      }
+      randomPhoto.addEventListener('click', () => {
+        modal.classList.add('open');
+        modalImg.src = selectedPhoto.src;
+        modalImg.alt = selectedPhoto.caption;
+        document.body.style.overflow = 'hidden';
+      });
 
-      function showImage(index) {
-        const thumb = currentThumbs[index];
-        if (!thumb) return;
-        modalImg.src = thumb.src;
-        captionEl.textContent = thumb.dataset.caption || '';
-        prevBtn.style.display = index > 0 ? 'flex' : 'none';
-        nextBtn.style.display = index < currentThumbs.length - 1 ? 'flex' : 'none';
-      }
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      });
 
-      function closeModal() {
-        modal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-      }
-
-      if (gallery) {
-        const NUM_FOTOS_HOME = 16;
-
-        const shuffled = shuffleArray([...allPhotos]);
-        const selected = shuffled.slice(0, Math.min(NUM_FOTOS_HOME, shuffled.length));
-
-        const verticals   = selected.filter(p => p.orientation !== 'h');
-        const horizontals = selected.filter(p => p.orientation === 'h');
-
-        gallery.innerHTML = '';
-        let useVerticalRow = true;
-
-        while (verticals.length || horizontals.length) {
-          if (useVerticalRow && verticals.length >= 2) {
-            const row = document.createElement('div');
-            row.className = 'row row-vertical';
-            row.appendChild(createThumb(verticals.shift()));
-            row.appendChild(createThumb(verticals.shift()));
-            gallery.appendChild(row);
-          } else if (horizontals.length) {
-            const row = document.createElement('div');
-            row.className = 'row row-horizontal';
-            row.appendChild(createThumb(horizontals.shift()));
-            gallery.appendChild(row);
-          } else if (verticals.length) {
-            const row = document.createElement('div');
-            row.className = 'row row-vertical';
-            row.appendChild(createThumb(verticals.shift()));
-            gallery.appendChild(row);
-          }
-
-          useVerticalRow = !useVerticalRow;
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
         }
+      });
 
-        setupModal();
-      }
-
-      if (prevBtn && nextBtn && closeBtn && modal) {
-        prevBtn.addEventListener('click', () => {
-          if (currentIndex > 0) {
-            currentIndex--;
-            showImage(currentIndex);
-          }
-        });
-
-        nextBtn.addEventListener('click', () => {
-          if (currentIndex < currentThumbs.length - 1) {
-            currentIndex++;
-            showImage(currentIndex);
-          }
-        });
-
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closeModal();
-        });
-
-        document.addEventListener('keydown', (e) => {
-          if (modal.style.display === 'block') {
-            if (e.key === 'Escape') {
-              closeModal();
-            } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-              currentIndex--;
-              showImage(currentIndex);
-            } else if (e.key === 'ArrowRight' && currentIndex < currentThumbs.length - 1) {
-              currentIndex++;
-              showImage(currentIndex);
-            }
-          }
-        });
-      }
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
     });
   </script>
 </body>
