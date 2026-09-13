@@ -1,310 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>Miguel Lopes</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <style>
-    :root {
-      --bg: #f6f6f3;
-      --text: #111;
-      --muted: #6d6d6d;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow: hidden;
-    }
-
-    .page {
-      min-height: 100vh;
-      width: 100%;
-      position: relative;
-    }
-
-    header {
-      position: fixed;
-      top: 20px;
-      left: 24px;
-      right: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 40;
-      pointer-events: none;
-    }
-
-    header .brand,
-    header .menu-toggle {
-      pointer-events: auto;
-    }
-
-    .brand {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .menu-toggle {
-      border: none;
-      background: none;
-      font-size: 1.6rem;
-      cursor: pointer;
-      padding: 4px 8px;
-      line-height: 1;
-      color: var(--text);
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 300px;
-      max-width: 88vw;
-      height: 100vh;
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding: 90px 28px 28px;
-      box-shadow: -8px 0 30px rgba(0,0,0,0.08);
-      transform: translateX(100%);
-      transition: transform 0.25s ease;
-      z-index: 30;
-    }
-
-    nav.open {
-      transform: translateX(0);
-    }
-
-    nav a,
-    .menu-link {
-      font-size: 0.95rem;
-      color: var(--muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      background: none;
-      border: none;
-      padding: 0;
-      text-align: left;
-      cursor: pointer;
-      display: block;
-      width: 100%;
-    }
-
-    nav a:hover,
-    .menu-link:hover {
-      color: var(--text);
-    }
-
-    .menu-section {
-      margin-top: 10px;
-    }
-
-    .portfolio-list {
-      display: none;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .portfolio-list.open {
-      display: flex;
-    }
-
-    .portfolio-list a {
-      display: block;
-      width: 100%;
-      line-height: 1.2;
-    }
-
-    main {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .home-photo {
-      max-width: 92vw;
-      max-height: 82vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      cursor: pointer;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.94);
-      z-index: 1000;
-    }
-
-    .modal.open {
-      display: block;
-    }
-
-    .modal-content {
-      position: absolute;
-      inset: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .close {
-      position: absolute;
-      top: 18px;
-      right: 28px;
-      color: white;
-      font-size: 34px;
-      line-height: 1;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        top: 16px;
-        left: 16px;
-        right: 16px;
-      }
-
-      main {
-        padding: 12px;
-      }
-
-      .home-photo {
-        max-width: 94vw;
-        max-height: 74vh;
-      }
-
-      .modal-content {
-        inset: 16px;
-      }
-    }
-  </style>
+  <meta name="description" content="Portfolio fotográfico de Miguel Lopes.">
+  <title>Miguel Lopes — Photography</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-  <div class="page">
-    <header>
-      <a href="index.html" class="brand">Miguel Lopes</a>
-      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
-    </header>
-
-    <nav id="main-menu">
-      <button class="menu-link portfolio-toggle" id="portfolio-toggle" type="button">
-        Portfolio
-      </button>
-
-      <div class="menu-section portfolio-list" id="portfolio-list">
-        <a href="greve-geral.html">Greve Geral</a>
-        <a href="nao-as-mega-centrais-solares.html">Não às mega centrais solares</a>
-        <a href="street-moments.html">Street Moments</a>
-        <a href="wsl.html">WSL</a>
-        <a href="diversos.html">Diversos</a>
+<body class="home">
+  <aside class="sidebar">
+    <a class="profile-link" href="index.html" aria-label="Página inicial de Miguel Lopes">
+      <img class="profile-image" src="images/profile/miguel.webp" alt="Retrato de Miguel Lopes">
+      <div class="identity">
+        <span class="identity-name">Miguel Lopes</span>
+        <span class="identity-role">Photography</span>
       </div>
+    </a>
 
-      <div class="menu-section">
-        <a href="sobre.html">Sobre</a>
+    <nav class="primary-nav" aria-label="Navegação principal">
+      <div class="nav-group">
+        <button class="nav-link portfolio-toggle" type="button" aria-expanded="false" aria-controls="portfolio-submenu">Portfolio</button>
+        <div class="portfolio-submenu" id="portfolio-submenu">
+          <a href="portfolio.html?category=greve-geral">Greve Geral</a>
+          <a href="portfolio.html?category=mega-centrais-solares">Não às mega centrais solares</a>
+          <a href="portfolio.html?category=street-moments">Street Moments</a>
+          <a href="portfolio.html?category=wsl">WSL</a>
+          <a href="portfolio.html?category=diversos">Diversos</a>
+          <a href="portfolio.html?category=retratos">Retratos</a>
+        </div>
       </div>
+      <a class="nav-link" href="about.html">About</a>
     </nav>
 
-    <main>
-      <img id="random-photo" class="home-photo" src="" alt="Fotografia em destaque">
-    </main>
-  </div>
+    <div class="sidebar-footer">© Miguel Lopes</div>
+  </aside>
 
-  <div id="modal" class="modal">
-    <span class="close">&times;</span>
-    <div class="modal-content">
-      <img id="modal-img" src="" alt="Fotografia ampliada">
-    </div>
-  </div>
+  <main class="home-stage" data-slideshow aria-label="Seleção de fotografia">
+    <div class="bg-slide" aria-hidden="true"></div>
+    <div class="bg-slide" aria-hidden="true"></div>
+  </main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const allPhotos = [
-        { src: 'images/greve-geral/GG2.jpg' },
-        { src: 'images/greve-geral/GG4.jpg' },
-        { src: 'images/greve-geral/GG7.jpg' },
-        { src: 'images/solares/Solar1.jpg' },
-        { src: 'images/solares/Solar5.jpg' },
-        { src: 'images/solares/Solar23.jpg' },
-        { src: 'images/street-moments/SM1.jpg' },
-        { src: 'images/street-moments/SM2.jpg' }
-      ];
-
-      const menuToggle = document.querySelector('.menu-toggle');
-      const mainMenu = document.getElementById('main-menu');
-      const portfolioToggle = document.getElementById('portfolio-toggle');
-      const portfolioList = document.getElementById('portfolio-list');
-      const randomPhoto = document.getElementById('random-photo');
-
-      const modal = document.getElementById('modal');
-      const modalImg = document.getElementById('modal-img');
-      const closeBtn = document.querySelector('.close');
-
-      menuToggle.addEventListener('click', () => {
-        mainMenu.classList.toggle('open');
-      });
-
-      portfolioToggle.addEventListener('click', () => {
-        portfolioList.classList.toggle('open');
-      });
-
-      const randomIndex = Math.floor(Math.random() * allPhotos.length);
-      const selectedPhoto = allPhotos[randomIndex];
-
-      randomPhoto.src = selectedPhoto.src;
-
-      randomPhoto.addEventListener('click', () => {
-        modal.classList.add('open');
-        modalImg.src = selectedPhoto.src;
-        document.body.style.overflow = 'hidden';
-      });
-
-      closeBtn.addEventListener('click', () => {
-        modal.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('open');
-          document.body.style.overflow = '';
-        }
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          modal.classList.remove('open');
-          document.body.style.overflow = '';
-        }
-      });
-    });
-  </script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
